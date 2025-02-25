@@ -7,7 +7,55 @@ AirTrack is a Flutter-based application that enables users to monitor real-time 
 The application follows the **Clean Architecture + Bloc Pattern**.
 
 ### System Architecture
-![System Architecture Diagram](docs/system_architecture.png)
+graph TD;
+    User["User"]
+    
+    subgraph Flutter App
+        Dashboard["Dashboard Screen"]
+        Chart["Chart Screen"]
+        Settings["Settings Screen"]
+    end
+
+    subgraph Bloc Layer
+        AirQualityBloc["AirQualityBloc"]
+        SettingsBloc["SettingsBloc"]
+    end
+
+    subgraph Domain Layer
+        GetAirQualityUseCase["GetAirQualityUseCase"]
+        SetAlertThresholdUseCase["SetAlertThresholdUseCase"]
+    end
+
+    subgraph Data Layer
+        Repository["AirQualityRepository (Interface)"]
+        RemoteSource["Remote Data Source (API, MQTT)"]
+        LocalSource["Local Data Source (SQLite, SharedPreferences)"]
+    end
+
+    subgraph Backend
+        API["REST API / WebSocket"]
+        Database["PostgreSQL / Firebase"]
+    end
+
+    User -->|Interacts| Dashboard
+    Dashboard -->|Requests Data| AirQualityBloc
+    Chart -->|Requests Data| AirQualityBloc
+    Settings -->|Changes Config| SettingsBloc
+
+    AirQualityBloc -->|Uses| GetAirQualityUseCase
+    SettingsBloc -->|Uses| SetAlertThresholdUseCase
+
+    GetAirQualityUseCase --> Repository
+    SetAlertThresholdUseCase --> Repository
+
+    Repository -->|Fetches Data| RemoteSource
+    Repository -->|Stores Data| LocalSource
+
+    RemoteSource -->|Calls| API
+    LocalSource -->|Stores in| Database
+
+    API -->|Serves Data| RemoteSource
+    Database -->|Stores Data| API
 
 ### Bloc Flow
 ![Bloc Diagram](docs/bloc_flow.png)
