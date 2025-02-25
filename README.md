@@ -1,16 +1,32 @@
-# air_track
+# AirTrack - Air Quality Monitoring Application 🌍
 
-A new Flutter project.
+## 1. Introduction
+AirTrack is a Flutter-based application that enables users to monitor real-time **PM2.5, CO2, temperature, and humidity** data from IoT sensors.
 
-## Getting Started
+## 2. Architecture
+The application follows the **Clean Architecture + Bloc Pattern**.
 
-This project is a starting point for a Flutter application.
+### System Architecture
+![System Architecture Diagram](docs/system_architecture.png)
 
-A few resources to get you started if this is your first Flutter project:
+### Bloc Flow
+![Bloc Diagram](docs/bloc_flow.png)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### Use Case
+![Use Case Diagram](docs/use_case.png)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 3. Technologies Used
+- **Flutter** (UI)
+- **Bloc Pattern** (State Management)
+- **Firebase/MQTT/PostgreSQL** (Backend)
+- **Dio** (API Requests)
+
+## 4. Installation & Running the Application
+```sh
+# Install dependencies
+flutter pub get
+
+# Run the application
+flutter run
+```
+
