@@ -3,6 +3,7 @@ import '../sources/remote/air_quality_api_service.dart';
 import '../models/air_quality_model.dart';
 import '../../domain/repositories/air_quality_repository.dart';
 import '../../domain/entities/air_quality.dart';
+import '../sources/local/location_service.dart';
 
 class AirQualityRepositoryImpl implements AirQualityRepository {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -11,28 +12,21 @@ class AirQualityRepositoryImpl implements AirQualityRepository {
   @override
   Future<AirQuality> getAirQuality() async {
     try {
-      print("Fetching Air Quality from Firestore...");
-      DocumentSnapshot snapshot = await _firestore.collection("air_quality_data").doc("hcm").get();
+      // Lấy vị trí hiện tại của người dùng
+      final position = await LocationService.getCurrentLocation();
 
-      if (!snapshot.exists) {
-        throw Exception("No data found in Firestore.");
-      }
+      print("Lấy dữ liệu Air Quality từ OpenWeather API...");
+      final data = await _apiService.fetchAirQuality(position.latitude, position.longitude);
 
-      Map<String, dynamic> data = snapshot.data() as Map<String, dynamic>;
-      print("Firestore Data: $data");
+      // Chuyển dữ liệu JSON thành model
+      final airQuality = AirQualityModel.fromApi(data);
 
-      return AirQualityModel(
-        aqi: data["aqi"],
-        co: data["co"],
-        no2: data["no2"],
-        o3: data["o3"],
-        so2: data["so2"],
-        pm25: data["pm2_5"],
-        pm10: data["pm10"],
-        timestamp: DateTime.fromMillisecondsSinceEpoch(data["timestamp"]),
-      );
+      // (Tuỳ chọn) Lưu vào Firestore để hỗ trợ caching dữ liệu
+      await _firestore.collection("air_quality_data").doc("user_location").set(airQuality.toFirestore());
+
+      return airQuality;
     } catch (e) {
-      throw Exception("Error fetching Air Quality from Firestore: $e");
+      throw Exception("Lỗi khi lấy dữ liệu chất lượng không khí: $e");
     }
   }
 }

@@ -1,0 +1,4 @@
+#Sat Mar 01 15:20:28 ICT 2025
+base.0=C\:\\Users\\trant\\Documents\\Flutter\\air_track\\android\\app\\build\\intermediates\\dex\\release\\minifyReleaseWithR8\\classes.dex
+path.0=classes.dex
+renamed.0=classes.dex

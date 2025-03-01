@@ -3,6 +3,10 @@
         android:label="air_track"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+        <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- For Android 10 and above -->
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
         <activity
             android:name=".MainActivity"
             android:exported="true"

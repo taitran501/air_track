@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fl_chart/fl_chart.dart';
 import '../../domain/usecases/get_air_quality.dart';
 import '../../data/repositories/air_quality_repository_impl.dart';
 import '../blocs/air_quality_bloc.dart';
@@ -7,10 +8,10 @@ import '../blocs/air_quality_bloc.dart';
 class DashboardScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
+    return BlocProvider( // BlocProvider để quản lý trạng thái
       create: (context) => AirQualityBloc(GetAirQuality(AirQualityRepositoryImpl()))
         ..add(FetchAirQuality()),
-      child: Scaffold(
+      child: Scaffold( 
         appBar: AppBar(
           title: const Text('AirTrack - Dashboard'),
           actions: [
@@ -22,60 +23,124 @@ class DashboardScreen extends StatelessWidget {
             ),
           ],
         ),
-        body: BlocBuilder<AirQualityBloc, AirQualityState>(
-          builder: (context, state) {
-            if (state is AirQualityLoading) {
-              return const Center(child: CircularProgressIndicator());
-            } else if (state is AirQualityLoaded) {
-              return Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Chỉ số AQI: ${state.airQuality.aqi}",
-                      style: const TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
-                    ),
-                    const SizedBox(height: 10),
-                    _buildAirQualityCard(state),
-                    const SizedBox(height: 20),
-                    ElevatedButton.icon(
-                      icon: const Icon(Icons.bar_chart),
-                      label: const Text("Xem biểu đồ"),
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/chart');
-                      },
-                    ),
-                  ],
-                ),
-              );
-            } else if (state is AirQualityError) {
-              return Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Icon(Icons.error, color: Colors.red, size: 50),
-                    const SizedBox(height: 10),
-                    Text("Lỗi tải dữ liệu: ${state.message}"),
-                    const SizedBox(height: 20),
-                    ElevatedButton(
-                      onPressed: () {
-                        context.read<AirQualityBloc>().add(FetchAirQuality());
-                      },
-                      child: const Text("Thử lại"),
-                    ),
-                  ],
-                ),
-              );
-            }
-            return const Center(child: Text("Không có dữ liệu!"));
-          },
+      body: BlocBuilder<AirQualityBloc, AirQualityState>(
+        builder: (context, state) {
+          if (state is AirQualityLoading) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (state is AirQualityLoaded) {
+            return Column(
+              children: [
+                Text("Chỉ số AQI: ${state.airQuality.aqi}", style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold)),
+                Text("PM2.5: ${state.airQuality.pm25} µg/m³"),
+                Text("CO: ${state.airQuality.co} µg/m³"),
+                Text("O3: ${state.airQuality.o3} µg/m³"),
+              ],
+            );
+          } else if (state is AirQualityError) {
+            return Center(child: Text("Lỗi: ${state.message}"));
+          }
+          return const Center(child: Text("Không có dữ liệu"));
+        },
+      ),
+      ),
+    );
+  }
+
+  Widget _buildDashboardUI(AirQualityLoaded state) {
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+        children: [
+          _buildAQICard(state.airQuality.aqi),
+          const SizedBox(height: 20),
+          Expanded(child: _buildAirQualityGrid(state)),
+          const SizedBox(height: 20),
+          _buildAQIChart(),
+        ],
+      ),
+    );
+  }
+
+// widget hiển thị chỉ số AQI
+  Widget _buildAQICard(int aqi) {
+    return Card(
+      elevation: 6,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      color: _getAQIColor(aqi), // đổi màu nền dựa vào chỉ số AQI
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 24),
+        child: Column(
+          children: [
+            const Text(
+              "Chỉ số AQI",
+              style: TextStyle(fontSize: 20, color: Colors.white),
+            ),
+            const SizedBox(height: 10),
+            Text(
+              "$aqi",
+              style: const TextStyle(fontSize: 36, fontWeight: FontWeight.bold, color: Colors.white),
+            ),
+            const SizedBox(height: 10),
+            Text(
+              _getAQILevel(aqi),
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500, color: Colors.white),
+            ),
+          ],
         ),
       ),
     );
   }
 
-  Widget _buildAirQualityCard(AirQualityLoaded state) {
+// hiển thị thông số chi tiết
+  Widget _buildAirQualityGrid(AirQualityLoaded state) {
+    final airQualityData = [
+      {"label": "CO", "value": state.airQuality.co, "unit": "µg/m³", "icon": Icons.cloud},
+      {"label": "NO₂", "value": state.airQuality.no2, "unit": "µg/m³", "icon": Icons.air},
+      {"label": "O₃", "value": state.airQuality.o3, "unit": "µg/m³", "icon": Icons.wb_sunny},
+      {"label": "PM2.5", "value": state.airQuality.pm25, "unit": "µg/m³", "icon": Icons.grain},
+      {"label": "PM10", "value": state.airQuality.pm10, "unit": "µg/m³", "icon": Icons.filter},
+    ];
+
+// gridview để hiển thị thông số
+    return GridView.builder(
+      shrinkWrap: true,
+      itemCount: airQualityData.length,
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        crossAxisSpacing: 10,
+        mainAxisSpacing: 10,
+      ),
+      itemBuilder: (context, index) {
+    final Map<String, dynamic> data = airQualityData[index]; // Ép kiểu về Map<String, dynamic>
+
+    return Card(
+      elevation: 4,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      child: Padding(
+        padding: const EdgeInsets.all(12),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(data["icon"] as IconData, size: 40, color: Colors.blue), // Ép kiểu IconData
+            const SizedBox(height: 10),
+            Text(
+              "${(data["value"] as double).toStringAsFixed(1)} ${(data["unit"] as String)}", // Ép kiểu double & String
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+            Text(
+              data["label"] as String, // Ép kiểu String
+              style: const TextStyle(fontSize: 16, color: Colors.grey),
+            ),
+          ],
+        ),
+      ),
+    );
+  },
+    );
+  }
+
+// build chart
+  Widget _buildAQIChart() {
     return Card(
       elevation: 4,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
@@ -83,27 +148,72 @@ class DashboardScreen extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            _buildAirQualityRow("CO", state.airQuality.co, "µg/m³"),
-            _buildAirQualityRow("NO₂", state.airQuality.no2, "µg/m³"),
-            _buildAirQualityRow("O₃", state.airQuality.o3, "µg/m³"),
-            _buildAirQualityRow("PM2.5", state.airQuality.pm25, "µg/m³"),
-            _buildAirQualityRow("PM10", state.airQuality.pm10, "µg/m³"),
+            const Text("Xu hướng AQI", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            const SizedBox(height: 10),
+            SizedBox(
+              height: 150,
+              child: LineChart(
+                LineChartData(
+                  lineBarsData: [
+                    LineChartBarData(
+                      spots: List.generate(
+                        7,
+                        (index) => FlSpot(index.toDouble(), (50 + index * 10).toDouble()), // tạo dữ liệu giả
+                      ),
+                      isCurved: true,
+                      dotData: FlDotData(show: false),
+                      belowBarData: BarAreaData(show: false),
+                    ),
+                  ],
+                  borderData: FlBorderData(show: false), // ẩn viền
+                  titlesData: FlTitlesData( // hiển thị tiêu đề
+                    bottomTitles: AxisTitles(sideTitles: SideTitles(showTitles: true)),
+                    leftTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildAirQualityRow(String label, double value, String unit) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 5),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+// build UI khi có lỗi
+  Widget _buildErrorUI(BuildContext context, AirQualityError state) {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text("$label:", style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500)),
-          Text("$value $unit", style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+          const Icon(Icons.error, color: Colors.red, size: 50),
+          const SizedBox(height: 10),
+          Text("Lỗi tải dữ liệu: ${state.message}"),
+          const SizedBox(height: 20),
+          ElevatedButton(
+            onPressed: () {
+              context.read<AirQualityBloc>().add(FetchAirQuality());
+            },
+            child: const Text("Thử lại"),
+          ),
         ],
       ),
     );
+  }
+
+// hàm trả về màu nền dựa vào chỉ số AQI
+  Color _getAQIColor(int aqi) {
+    if (aqi <= 50) return Colors.green;
+    if (aqi <= 100) return Colors.yellow;
+    if (aqi <= 150) return Colors.orange;
+    if (aqi <= 200) return Colors.red;
+    return Colors.purple;
+  }
+
+  String _getAQILevel(int aqi) {
+    if (aqi <= 50) return "Tốt";
+    if (aqi <= 100) return "Trung bình";
+    if (aqi <= 150) return "Kém";
+    if (aqi <= 200) return "Xấu";
+    return "Nguy hại";
   }
 }

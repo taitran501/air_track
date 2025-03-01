@@ -8,17 +8,12 @@ class AirQualityApiService {
 
   Future<Map<String, dynamic>> fetchAirQuality(double lat, double lon) async {
     final url = Uri.parse("$baseUrl?lat=$lat&lon=$lon&appid=$apiKey");
-
-    print("Calling API: $url"); // Debug URL API
     final response = await http.get(url);
-
-    print("Response status: ${response.statusCode}");
-    print("Response body: ${response.body}");
 
     if (response.statusCode == 200) {
       return json.decode(response.body);
     } else {
-      throw Exception("Failed to fetch air quality data: ${response.body}");
+      throw Exception("Không thể lấy dữ liệu chất lượng không khí: ${response.body}");
     }
   }
 }

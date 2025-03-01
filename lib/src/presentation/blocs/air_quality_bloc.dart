@@ -15,8 +15,9 @@ class AirQualityBloc extends Bloc<AirQualityEvent, AirQualityState> {
         final airQuality = await getAirQuality.call();
         emit(AirQualityLoaded(airQuality));
       } catch (e) {
-        emit(AirQualityError("Failed to load air quality data: $e"));
+        emit(AirQualityError("Không thể tải dữ liệu: $e"));
       }
     });
   }
 }
+

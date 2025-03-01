@@ -4,7 +4,7 @@
             "outputFile": "com.example.air_track.app-mergeDebugResources-55:/values-nb/values-nb.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\trant\\.gradle\\caches\\8.10.2\\transforms\\70d6979a7effd67c568a67cfb2248792\\transformed\\appcompat-1.1.0\\res\\values-nb\\values-nb.xml",
+                    "source": "C:\\Users\\trant\\.gradle\\caches\\8.10\\transforms\\435e1fe3b272792e6b971babc0911ea5\\transformed\\appcompat-1.1.0\\res\\values-nb\\values-nb.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -21,75 +21,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\trant\\.gradle\\caches\\8.10.2\\transforms\\417e7c87884e08d4d7995f4b5128db34\\transformed\\core-1.13.1\\res\\values-nb\\values-nb.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,149,251,348,447,555,661,781",
-                        "endColumns": "93,101,96,98,107,105,119,100",
-                        "endOffsets": "144,246,343,442,550,656,776,877"
-                    },
-                    "to": {
-                        "startLines": "31,32,33,34,35,36,37,65",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "2969,3063,3165,3262,3361,3469,3575,6785",
-                        "endColumns": "93,101,96,98,107,105,119,100",
-                        "endOffsets": "3058,3160,3257,3356,3464,3570,3690,6881"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\trant\\.gradle\\caches\\8.10.2\\transforms\\b8e2387ce6d13c96e7fdc6f200d1522c\\transformed\\jetified-credentials-1.2.0-rc01\\res\\values-nb\\values-nb.xml",
-                    "from": {
-                        "startLines": "2,3",
-                        "startColumns": "4,4",
-                        "startOffsets": "55,166",
-                        "endColumns": "110,120",
-                        "endOffsets": "161,282"
-                    },
-                    "to": {
-                        "startLines": "29,30",
-                        "startColumns": "4,4",
-                        "startOffsets": "2737,2848",
-                        "endColumns": "110,120",
-                        "endOffsets": "2843,2964"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\trant\\.gradle\\caches\\8.10.2\\transforms\\3bd6afadb1d2da08d072910940e05d5e\\transformed\\jetified-play-services-base-18.5.0\\res\\values-nb\\values.xml",
-                    "from": {
-                        "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
-                        "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
-                        "startOffsets": "193,295,450,572,677,829,955,1071,1170,1320,1423,1580,1704,1842,2014,2077,2135",
-                        "endColumns": "101,154,121,104,151,125,115,98,149,102,156,123,137,171,62,57,73",
-                        "endOffsets": "294,449,571,676,828,954,1070,1169,1319,1422,1579,1703,1841,2013,2076,2134,2208"
-                    },
-                    "to": {
-                        "startLines": "38,39,40,41,42,43,44,45,47,48,49,50,51,52,53,54,55",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "3695,3801,3960,4086,4195,4351,4481,4601,4834,4988,5095,5256,5384,5526,5702,5769,5831",
-                        "endColumns": "105,158,125,108,155,129,119,102,153,106,160,127,141,175,66,61,77",
-                        "endOffsets": "3796,3955,4081,4190,4346,4476,4596,4699,4983,5090,5251,5379,5521,5697,5764,5826,5904"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\trant\\.gradle\\caches\\8.10.2\\transforms\\661e30f974af3723ccaef91d8a632d69\\transformed\\jetified-play-services-basement-18.5.0\\res\\values-nb\\values.xml",
-                    "from": {
-                        "startLines": "4",
-                        "startColumns": "0",
-                        "startOffsets": "195",
-                        "endColumns": "125",
-                        "endOffsets": "320"
-                    },
-                    "to": {
-                        "startLines": "46",
-                        "startColumns": "4",
-                        "startOffsets": "4704",
-                        "endColumns": "129",
-                        "endOffsets": "4829"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\trant\\.gradle\\caches\\8.10.2\\transforms\\f3be6a6ce84926dda8b25a9c96ad6da7\\transformed\\preference-1.2.1\\res\\values-nb\\values-nb.xml",
+                    "source": "C:\\Users\\trant\\.gradle\\caches\\8.10\\transforms\\955f24b11f3e6fe41892d467e10419f7\\transformed\\preference-1.2.1\\res\\values-nb\\values-nb.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8",
                         "startColumns": "4,4,4,4,4,4,4",
@@ -106,7 +38,75 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\trant\\.gradle\\caches\\8.10.2\\transforms\\761411e951a3644118e03eb9f7508fc6\\transformed\\browser-1.4.0\\res\\values-nb\\values-nb.xml",
+                    "source": "C:\\Users\\trant\\.gradle\\caches\\8.10\\transforms\\fa5a2dedfadf466389bd4ebe86018612\\transformed\\jetified-play-services-basement-18.5.0\\res\\values-nb\\values.xml",
+                    "from": {
+                        "startLines": "4",
+                        "startColumns": "0",
+                        "startOffsets": "195",
+                        "endColumns": "125",
+                        "endOffsets": "320"
+                    },
+                    "to": {
+                        "startLines": "46",
+                        "startColumns": "4",
+                        "startOffsets": "4704",
+                        "endColumns": "129",
+                        "endOffsets": "4829"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\trant\\.gradle\\caches\\8.10\\transforms\\97408550e294df917cfdb7caf2d44c19\\transformed\\jetified-play-services-base-18.5.0\\res\\values-nb\\values.xml",
+                    "from": {
+                        "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
+                        "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
+                        "startOffsets": "193,295,450,572,677,829,955,1071,1170,1320,1423,1580,1704,1842,2014,2077,2135",
+                        "endColumns": "101,154,121,104,151,125,115,98,149,102,156,123,137,171,62,57,73",
+                        "endOffsets": "294,449,571,676,828,954,1070,1169,1319,1422,1579,1703,1841,2013,2076,2134,2208"
+                    },
+                    "to": {
+                        "startLines": "38,39,40,41,42,43,44,45,47,48,49,50,51,52,53,54,55",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "3695,3801,3960,4086,4195,4351,4481,4601,4834,4988,5095,5256,5384,5526,5702,5769,5831",
+                        "endColumns": "105,158,125,108,155,129,119,102,153,106,160,127,141,175,66,61,77",
+                        "endOffsets": "3796,3955,4081,4190,4346,4476,4596,4699,4983,5090,5251,5379,5521,5697,5764,5826,5904"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\trant\\.gradle\\caches\\8.10\\transforms\\372ea57174f05a24d000c5fea582f21a\\transformed\\jetified-credentials-1.2.0-rc01\\res\\values-nb\\values-nb.xml",
+                    "from": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,166",
+                        "endColumns": "110,120",
+                        "endOffsets": "161,282"
+                    },
+                    "to": {
+                        "startLines": "29,30",
+                        "startColumns": "4,4",
+                        "startOffsets": "2737,2848",
+                        "endColumns": "110,120",
+                        "endOffsets": "2843,2964"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\trant\\.gradle\\caches\\8.10\\transforms\\68976dc9eba03ba35e41b124f97d53a3\\transformed\\core-1.13.1\\res\\values-nb\\values-nb.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,149,251,348,447,555,661,781",
+                        "endColumns": "93,101,96,98,107,105,119,100",
+                        "endOffsets": "144,246,343,442,550,656,776,877"
+                    },
+                    "to": {
+                        "startLines": "31,32,33,34,35,36,37,65",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "2969,3063,3165,3262,3361,3469,3575,6785",
+                        "endColumns": "93,101,96,98,107,105,119,100",
+                        "endOffsets": "3058,3160,3257,3356,3464,3570,3690,6881"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\trant\\.gradle\\caches\\8.10\\transforms\\a5c7b15df2f469aa3d15dee8463b1ebf\\transformed\\browser-1.4.0\\res\\values-nb\\values-nb.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",

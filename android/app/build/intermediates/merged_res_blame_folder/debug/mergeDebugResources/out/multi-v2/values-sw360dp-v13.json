@@ -4,7 +4,7 @@
             "outputFile": "com.example.air_track.app-mergeDebugResources-55:/values-sw360dp-v13/values-sw360dp-v13.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\trant\\.gradle\\caches\\8.10.2\\transforms\\f3be6a6ce84926dda8b25a9c96ad6da7\\transformed\\preference-1.2.1\\res\\values-sw360dp-v13\\values-sw360dp-v13.xml",
+                    "source": "C:\\Users\\trant\\.gradle\\caches\\8.10\\transforms\\955f24b11f3e6fe41892d467e10419f7\\transformed\\preference-1.2.1\\res\\values-sw360dp-v13\\values-sw360dp-v13.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

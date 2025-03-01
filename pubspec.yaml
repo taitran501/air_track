@@ -11,6 +11,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  geolocator: ^13.0.2
   fl_chart: ^0.70.2
   flutter_bloc: ^9.0.0
   equatable: ^2.0.5
@@ -22,8 +23,8 @@ dependencies:
   get_it: ^8.0.3
   http: ^1.1.2  # Replace with actual version
   dartz: ^0.10.1
-  flutter_dotenv: ^5.2.1
-
+  flutter_dotenv: ^5.1.0
+  google_sign_in: ^6.2.2
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -31,5 +32,6 @@ dev_dependencies:
   flutter_lints: ^5.0.0
 
 flutter:
-
+  assets:
+    - .env
   uses-material-design: true

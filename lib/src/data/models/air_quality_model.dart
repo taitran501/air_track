@@ -21,21 +21,21 @@ class AirQualityModel extends AirQuality {
           timestamp: timestamp,
         );
 
-  factory AirQualityModel.fromApi(Map<String, dynamic> json) { // Chuyển dữ liệu từ API sang dữ liệu mô hình
-    final data = json["list"][0]; // Lấy phần tử đầu tiên trong danh sách
+  factory AirQualityModel.fromApi(Map<String, dynamic> json) {
+    final data = json["list"][0];
     return AirQualityModel(
-      aqi: data["main"]["aqi"] ?? 1,  // Mặc định AQI = 1 nếu thiếu
+      aqi: data["main"]["aqi"] ?? 1,
       co: (data["components"]["co"] ?? 0.0).toDouble(),
       no2: (data["components"]["no2"] ?? 0.0).toDouble(),
       o3: (data["components"]["o3"] ?? 0.0).toDouble(),
       so2: (data["components"]["so2"] ?? 0.0).toDouble(),
       pm25: (data["components"]["pm2_5"] ?? 0.0).toDouble(),
       pm10: (data["components"]["pm10"] ?? 0.0).toDouble(),
-      timestamp: DateTime.fromMillisecondsSinceEpoch((data["dt"] ?? 0) * 1000),
+      timestamp: DateTime.now(),
     );
   }
 
-// Chuyển dữ liệu từ mô hình sang Firestore
+  // Thêm phương thức này để chuyển đổi model sang Firestore
   Map<String, dynamic> toFirestore() {
     return {
       "aqi": aqi,
@@ -43,9 +43,9 @@ class AirQualityModel extends AirQuality {
       "no2": no2,
       "o3": o3,
       "so2": so2,
-      "pm2_5": pm25,
+      "pm25": pm25,
       "pm10": pm10,
-      "timestamp": timestamp.millisecondsSinceEpoch,
+      "timestamp": timestamp.toIso8601String(), // Chuyển DateTime thành String
     };
   }
 }
