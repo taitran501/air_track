@@ -9,6 +9,7 @@ environment:
   sdk: ^3.7.0
 
 dependencies:
+  device_preview: ^1.2.0
   flutter:
     sdk: flutter
   geolocator: ^13.0.2

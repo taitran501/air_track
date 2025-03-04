@@ -2,12 +2,12 @@
     name="release"
     package="com.example.air_track"
     minSdkVersion="23"
-    targetSdkVersion="34"
+    targetSdkVersion="35"
     shrinking="true"
     mergedManifest="build\intermediates\merged_manifest\release\processReleaseMainManifest\AndroidManifest.xml"
     proguardFiles="build\intermediates\default_proguard_files\global\proguard-android-optimize.txt-8.7.0;D:\Flutter\flutter\packages\flutter_tools\gradle\flutter_proguard_rules.pro;proguard-rules.pro"
     partialResultsDir="build\intermediates\lint_vital_partial_results\release\lintVitalAnalyzeRelease\out"
-    desugaredMethodsFiles="C:\Users\trant\.gradle\caches\8.9\transforms\a9c22d6e7cecfa6dba9e19d8855a3fdf\transformed\D8BackportedDesugaredMethods.txt">
+    desugaredMethodsFiles="C:\Users\trant\.gradle\caches\8.10\transforms\b7a20169e5f74b6b514f1983e4922647\transformed\D8BackportedDesugaredMethods.txt">
   <buildFeatures
       namespacing="REQUIRED"/>
   <sourceProviders>
@@ -32,6 +32,6 @@
       applicationId="com.example.air_track"
       generatedSourceFolders="build\generated\ap_generated_sources\release\out"
       generatedResourceFolders="build\generated\res\google-services\release;build\generated\res\resValues\release"
-      desugaredMethodsFiles="C:\Users\trant\.gradle\caches\8.9\transforms\a9c22d6e7cecfa6dba9e19d8855a3fdf\transformed\D8BackportedDesugaredMethods.txt">
+      desugaredMethodsFiles="C:\Users\trant\.gradle\caches\8.10\transforms\b7a20169e5f74b6b514f1983e4922647\transformed\D8BackportedDesugaredMethods.txt">
   </artifact>
 </variant>

@@ -1,4 +1,5 @@
 import '../../domain/entities/air_quality.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class AirQualityModel extends AirQuality {
   const AirQualityModel({
@@ -21,6 +22,7 @@ class AirQualityModel extends AirQuality {
           timestamp: timestamp,
         );
 
+  /// **Chuyển đổi từ API OpenWeather**
   factory AirQualityModel.fromApi(Map<String, dynamic> json) {
     final data = json["list"][0];
     return AirQualityModel(
@@ -35,7 +37,7 @@ class AirQualityModel extends AirQuality {
     );
   }
 
-  // Thêm phương thức này để chuyển đổi model sang Firestore
+  /// **Chuyển đổi model thành Firestore**
   Map<String, dynamic> toFirestore() {
     return {
       "aqi": aqi,
@@ -45,7 +47,23 @@ class AirQualityModel extends AirQuality {
       "so2": so2,
       "pm25": pm25,
       "pm10": pm10,
-      "timestamp": timestamp.toIso8601String(), // Chuyển DateTime thành String
+      "timestamp": timestamp.toIso8601String(), // Chuyển DateTime thành String để lưu vào Firestore
     };
   }
+
+/// **Tạo model từ Firestore**
+factory AirQualityModel.fromFirestore(Map<String, dynamic> airQualityData) {
+  return AirQualityModel(
+    aqi: airQualityData["aqi"] ?? 1,
+    co: (airQualityData["co"] ?? 0.0).toDouble(),
+    no2: (airQualityData["no2"] ?? 0.0).toDouble(),
+    o3: (airQualityData["o3"] ?? 0.0).toDouble(),
+    so2: (airQualityData["so2"] ?? 0.0).toDouble(),
+    pm25: (airQualityData["pm25"] ?? 0.0).toDouble(),
+    pm10: (airQualityData["pm10"] ?? 0.0).toDouble(),
+    timestamp: airQualityData["timestamp"] is Timestamp
+        ? (airQualityData["timestamp"] as Timestamp).toDate()
+        : DateTime.now(),
+  );
+}
 }

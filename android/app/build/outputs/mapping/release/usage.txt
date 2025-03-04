@@ -26,10 +26,24 @@ android.support.customtabs.trusted.ITrustedWebActivityService$Stub$Proxy
 android.support.customtabs.trusted.ITrustedWebActivityService$Stub
 android.support.customtabs.trusted.ITrustedWebActivityService
 android.support.v4.app.INotificationSideChannel$Default
-android.support.v4.app.INotificationSideChannel$Stub$Proxy
-android.support.v4.app.INotificationSideChannel$Stub
-android.support.v4.app.INotificationSideChannel$_Parcel
-android.support.v4.app.INotificationSideChannel
+android.support.v4.app.INotificationSideChannel$Stub$Proxy:
+    public void cancel(java.lang.String,int,java.lang.String)
+    public void cancelAll(java.lang.String)
+    public java.lang.String getInterfaceDescriptor()
+android.support.v4.app.INotificationSideChannel$Stub:
+    static final int TRANSACTION_cancel
+    static final int TRANSACTION_cancelAll
+    static final int TRANSACTION_notify
+    public void <init>()
+    public android.os.IBinder asBinder()
+    public boolean onTransact(int,android.os.Parcel,android.os.Parcel,int)
+android.support.v4.app.INotificationSideChannel$_Parcel:
+    public void <init>()
+    static synthetic java.lang.Object access$000(android.os.Parcel,android.os.Parcelable$Creator)
+    private static java.lang.Object readTypedObject(android.os.Parcel,android.os.Parcelable$Creator)
+android.support.v4.app.INotificationSideChannel:
+    public abstract void cancel(java.lang.String,int,java.lang.String)
+    public abstract void cancelAll(java.lang.String)
 android.support.v4.os.IResultReceiver$Default
 android.support.v4.os.IResultReceiver$Stub$Proxy
 android.support.v4.os.IResultReceiver$Stub
@@ -2945,8 +2959,10 @@ androidx.core.app.ActivityCompat$Api23Impl:
     private void <init>()
 androidx.core.app.ActivityCompat$Api28Impl
 androidx.core.app.ActivityCompat$Api30Impl
-androidx.core.app.ActivityCompat$Api31Impl
-androidx.core.app.ActivityCompat$Api32Impl
+androidx.core.app.ActivityCompat$Api31Impl:
+    private void <init>()
+androidx.core.app.ActivityCompat$Api32Impl:
+    private void <init>()
 androidx.core.app.ActivityCompat$PermissionCompatDelegate:
     public abstract boolean onActivityResult(android.app.Activity,int,int,android.content.Intent)
 androidx.core.app.ActivityCompat$SharedElementCallback21Impl
@@ -2967,7 +2983,6 @@ androidx.core.app.ActivityCompat:
     public static void setExitSharedElementCallback(android.app.Activity,androidx.core.app.SharedElementCallback)
     public static void setLocusContext(android.app.Activity,androidx.core.content.LocusIdCompat,android.os.Bundle)
     public static void setPermissionCompatDelegate(androidx.core.app.ActivityCompat$PermissionCompatDelegate)
-    public static boolean shouldShowRequestPermissionRationale(android.app.Activity,java.lang.String)
     public static void startPostponedEnterTransition(android.app.Activity)
 androidx.core.app.ActivityManagerCompat
 androidx.core.app.ActivityOptionsCompat$ActivityOptionsCompatImpl
@@ -3205,7 +3220,6 @@ androidx.core.app.NotificationCompat$Builder:
     public androidx.core.app.NotificationCompat$Builder setLargeIcon(android.graphics.drawable.Icon)
     public androidx.core.app.NotificationCompat$Builder setLocusId(androidx.core.content.LocusIdCompat)
     public androidx.core.app.NotificationCompat$Builder setNotificationSilent()
-    public androidx.core.app.NotificationCompat$Builder setOngoing(boolean)
     public androidx.core.app.NotificationCompat$Builder setOnlyAlertOnce(boolean)
     public androidx.core.app.NotificationCompat$Builder setProgress(int,int,boolean)
     public androidx.core.app.NotificationCompat$Builder setPublicVersion(android.app.Notification)
@@ -3520,18 +3534,19 @@ androidx.core.app.NotificationCompatSideChannelService
 androidx.core.app.NotificationManagerCompat$Api23Impl
 androidx.core.app.NotificationManagerCompat$Api24Impl:
     private void <init>()
-androidx.core.app.NotificationManagerCompat$Api26Impl
+androidx.core.app.NotificationManagerCompat$Api26Impl:
+    private void <init>()
 androidx.core.app.NotificationManagerCompat$Api28Impl
 androidx.core.app.NotificationManagerCompat$Api30Impl
 androidx.core.app.NotificationManagerCompat$Api34Impl
 androidx.core.app.NotificationManagerCompat$CancelTask
 androidx.core.app.NotificationManagerCompat$InterruptionFilter
 androidx.core.app.NotificationManagerCompat$NotificationWithIdAndTag
-androidx.core.app.NotificationManagerCompat$NotifyTask
-androidx.core.app.NotificationManagerCompat$ServiceConnectedEvent
-androidx.core.app.NotificationManagerCompat$SideChannelManager$ListenerRecord
-androidx.core.app.NotificationManagerCompat$SideChannelManager
-androidx.core.app.NotificationManagerCompat$Task
+androidx.core.app.NotificationManagerCompat$SideChannelManager:
+    private static final int MSG_QUEUE_TASK
+    private static final int MSG_RETRY_LISTENER_QUEUE
+    private static final int MSG_SERVICE_CONNECTED
+    private static final int MSG_SERVICE_DISCONNECTED
 androidx.core.app.NotificationManagerCompat:
     public static final java.lang.String ACTION_BIND_SIDE_CHANNEL
     private static final java.lang.String CHECK_OP_NO_THROW
@@ -3554,14 +3569,11 @@ androidx.core.app.NotificationManagerCompat:
     private static final int SIDE_CHANNEL_RETRY_BASE_INTERVAL_MS
     private static final int SIDE_CHANNEL_RETRY_MAX_COUNT
     private static final java.lang.String TAG
-    private static java.lang.String sEnabledNotificationListeners
-    private static androidx.core.app.NotificationManagerCompat$SideChannelManager sSideChannelManager
     void <init>(android.app.NotificationManager,android.content.Context)
     public boolean canUseFullScreenIntent()
     public void cancel(int)
     public void cancel(java.lang.String,int)
     public void cancelAll()
-    public void createNotificationChannel(android.app.NotificationChannel)
     public void createNotificationChannel(androidx.core.app.NotificationChannelCompat)
     public void createNotificationChannelGroup(android.app.NotificationChannelGroup)
     public void createNotificationChannelGroup(androidx.core.app.NotificationChannelGroupCompat)
@@ -3574,7 +3586,6 @@ androidx.core.app.NotificationManagerCompat:
     public void deleteUnlistedNotificationChannels(java.util.Collection)
     public java.util.List getActiveNotifications()
     public int getCurrentInterruptionFilter()
-    public static java.util.Set getEnabledListenerPackages(android.content.Context)
     public int getImportance()
     public android.app.NotificationChannel getNotificationChannel(java.lang.String)
     public android.app.NotificationChannel getNotificationChannel(java.lang.String,java.lang.String)
@@ -3586,11 +3597,7 @@ androidx.core.app.NotificationManagerCompat:
     public java.util.List getNotificationChannelGroupsCompat()
     public java.util.List getNotificationChannels()
     public java.util.List getNotificationChannelsCompat()
-    public void notify(int,android.app.Notification)
-    public void notify(java.lang.String,int,android.app.Notification)
     public void notify(java.util.List)
-    private void pushSideChannelQueue(androidx.core.app.NotificationManagerCompat$Task)
-    private static boolean useSideChannelForNotification(android.app.Notification)
 androidx.core.app.OnNewIntentProvider
 androidx.core.app.OnUserLeaveHintProvider
 androidx.core.app.PendingIntentCompat$Api23Impl
@@ -4143,34 +4150,125 @@ androidx.core.location.GnssStatusWrapper$Api26Impl
 androidx.core.location.GnssStatusWrapper$Api30Impl
 androidx.core.location.GnssStatusWrapper
 androidx.core.location.GpsStatusWrapper
-androidx.core.location.LocationCompat$Api26Impl
+androidx.core.location.LocationCompat$Api26Impl:
+    private void <init>()
 androidx.core.location.LocationCompat$Api28Impl
 androidx.core.location.LocationCompat$Api29Impl
 androidx.core.location.LocationCompat$Api33Impl
 androidx.core.location.LocationCompat$Api34Impl
-androidx.core.location.LocationCompat
+androidx.core.location.LocationCompat:
+    public static final java.lang.String EXTRA_BEARING_ACCURACY
+    public static final java.lang.String EXTRA_IS_MOCK
+    public static final java.lang.String EXTRA_MSL_ALTITUDE
+    public static final java.lang.String EXTRA_MSL_ALTITUDE_ACCURACY
+    public static final java.lang.String EXTRA_SPEED_ACCURACY
+    public static final java.lang.String EXTRA_VERTICAL_ACCURACY
+    private static java.lang.reflect.Method sSetIsFromMockProviderMethod
+    private void <init>()
+    public static long getElapsedRealtimeNanos(android.location.Location)
+    public static float getMslAltitudeAccuracyMeters(android.location.Location)
+    public static double getMslAltitudeMeters(android.location.Location)
+    private static android.os.Bundle getOrCreateExtras(android.location.Location)
+    private static java.lang.reflect.Method getSetIsFromMockProviderMethod()
+    public static boolean hasMslAltitude(android.location.Location)
+    public static boolean hasMslAltitudeAccuracy(android.location.Location)
+    public static void removeBearingAccuracy(android.location.Location)
+    private static void removeExtra(android.location.Location,java.lang.String)
+    public static void removeMslAltitude(android.location.Location)
+    public static void removeMslAltitudeAccuracy(android.location.Location)
+    public static void removeSpeedAccuracy(android.location.Location)
+    public static void removeVerticalAccuracy(android.location.Location)
+    public static void setBearingAccuracyDegrees(android.location.Location,float)
+    public static void setMock(android.location.Location,boolean)
+    public static void setMslAltitudeAccuracyMeters(android.location.Location,float)
+    public static void setMslAltitudeMeters(android.location.Location,double)
+    public static void setSpeedAccuracyMetersPerSecond(android.location.Location,float)
+    public static void setVerticalAccuracyMeters(android.location.Location,float)
 androidx.core.location.LocationKt
-androidx.core.location.LocationListenerCompat
-androidx.core.location.LocationManagerCompat$Api19Impl
+androidx.core.location.LocationListenerCompat:
+    public void onProviderDisabled(java.lang.String)
+    public void onProviderEnabled(java.lang.String)
+    public void onStatusChanged(java.lang.String,int,android.os.Bundle)
+androidx.core.location.LocationManagerCompat$Api19Impl:
+    private void <init>()
 androidx.core.location.LocationManagerCompat$Api24Impl
 androidx.core.location.LocationManagerCompat$Api28Impl
 androidx.core.location.LocationManagerCompat$Api30Impl
-androidx.core.location.LocationManagerCompat$Api31Impl
+androidx.core.location.LocationManagerCompat$Api31Impl:
+    private void <init>()
 androidx.core.location.LocationManagerCompat$CancellableLocationListener
 androidx.core.location.LocationManagerCompat$GnssListenersHolder
 androidx.core.location.LocationManagerCompat$GnssMeasurementsTransport
 androidx.core.location.LocationManagerCompat$GnssStatusTransport
 androidx.core.location.LocationManagerCompat$GpsStatusTransport
 androidx.core.location.LocationManagerCompat$InlineHandlerExecutor
-androidx.core.location.LocationManagerCompat$LocationListenerKey
-androidx.core.location.LocationManagerCompat$LocationListenerTransport
+androidx.core.location.LocationManagerCompat$LocationListenerKey:
+    final androidx.core.location.LocationListenerCompat mListener
+    final java.lang.String mProvider
+    void <init>(java.lang.String,androidx.core.location.LocationListenerCompat)
+    public boolean equals(java.lang.Object)
+    public int hashCode()
+androidx.core.location.LocationManagerCompat$LocationListenerTransport:
+    final java.util.concurrent.Executor mExecutor
+    volatile androidx.core.location.LocationManagerCompat$LocationListenerKey mKey
+    void <init>(androidx.core.location.LocationManagerCompat$LocationListenerKey,java.util.concurrent.Executor)
+    private synthetic void lambda$onFlushComplete$2(int)
+    private synthetic void lambda$onLocationChanged$0(android.location.Location)
+    private synthetic void lambda$onLocationChanged$1(java.util.List)
+    private synthetic void lambda$onProviderDisabled$5(java.lang.String)
+    private synthetic void lambda$onProviderEnabled$4(java.lang.String)
+    private synthetic void lambda$onStatusChanged$3(java.lang.String,int,android.os.Bundle)
+    public void onFlushComplete(int)
+    public void onLocationChanged(android.location.Location)
+    public void onLocationChanged(java.util.List)
+    public void onProviderDisabled(java.lang.String)
+    public void onProviderEnabled(java.lang.String)
+    public void onStatusChanged(java.lang.String,int,android.os.Bundle)
 androidx.core.location.LocationManagerCompat$PreRGnssStatusTransport
-androidx.core.location.LocationManagerCompat
-androidx.core.location.LocationRequestCompat$Api19Impl
-androidx.core.location.LocationRequestCompat$Api31Impl
-androidx.core.location.LocationRequestCompat$Builder
+androidx.core.location.LocationManagerCompat:
+    private static final long GET_CURRENT_LOCATION_TIMEOUT_MS
+    private static final long MAX_CURRENT_LOCATION_AGE_MS
+    private static final long PRE_N_LOOPER_TIMEOUT_S
+    private static java.lang.reflect.Field sContextField
+    private static java.lang.reflect.Method sGnssRequestBuilderBuildMethod
+    private static java.lang.Class sGnssRequestBuilderClass
+    private static java.lang.reflect.Method sRegisterGnssMeasurementsCallbackMethod
+    private void <init>()
+    public static void getCurrentLocation(android.location.LocationManager,java.lang.String,android.os.CancellationSignal,java.util.concurrent.Executor,androidx.core.util.Consumer)
+    public static void getCurrentLocation(android.location.LocationManager,java.lang.String,androidx.core.os.CancellationSignal,java.util.concurrent.Executor,androidx.core.util.Consumer)
+    public static java.lang.String getGnssHardwareModelName(android.location.LocationManager)
+    public static int getGnssYearOfHardware(android.location.LocationManager)
+    public static boolean hasProvider(android.location.LocationManager,java.lang.String)
+    public static boolean isLocationEnabled(android.location.LocationManager)
+    private static synthetic void lambda$getCurrentLocation$0(androidx.core.util.Consumer,android.location.Location)
+    private static synthetic java.lang.Boolean lambda$registerGnssStatusCallback$1(android.location.LocationManager,androidx.core.location.LocationManagerCompat$GpsStatusTransport)
+    public static boolean registerGnssMeasurementsCallback(android.location.LocationManager,android.location.GnssMeasurementsEvent$Callback,android.os.Handler)
+    public static boolean registerGnssMeasurementsCallback(android.location.LocationManager,java.util.concurrent.Executor,android.location.GnssMeasurementsEvent$Callback)
+    private static boolean registerGnssMeasurementsCallbackOnR(android.location.LocationManager,java.util.concurrent.Executor,android.location.GnssMeasurementsEvent$Callback)
+    private static boolean registerGnssStatusCallback(android.location.LocationManager,android.os.Handler,java.util.concurrent.Executor,androidx.core.location.GnssStatusCompat$Callback)
+    public static boolean registerGnssStatusCallback(android.location.LocationManager,androidx.core.location.GnssStatusCompat$Callback,android.os.Handler)
+    public static boolean registerGnssStatusCallback(android.location.LocationManager,java.util.concurrent.Executor,androidx.core.location.GnssStatusCompat$Callback)
+    public static void removeUpdates(android.location.LocationManager,androidx.core.location.LocationListenerCompat)
+    public static void requestLocationUpdates(android.location.LocationManager,java.lang.String,androidx.core.location.LocationRequestCompat,java.util.concurrent.Executor,androidx.core.location.LocationListenerCompat)
+    public static void unregisterGnssMeasurementsCallback(android.location.LocationManager,android.location.GnssMeasurementsEvent$Callback)
+    public static void unregisterGnssStatusCallback(android.location.LocationManager,androidx.core.location.GnssStatusCompat$Callback)
+androidx.core.location.LocationRequestCompat$Api19Impl:
+    private void <init>()
+androidx.core.location.LocationRequestCompat$Api31Impl:
+    private void <init>()
+androidx.core.location.LocationRequestCompat$Builder:
+    public void <init>(androidx.core.location.LocationRequestCompat)
+    public androidx.core.location.LocationRequestCompat$Builder clearMinUpdateIntervalMillis()
+    public androidx.core.location.LocationRequestCompat$Builder setDurationMillis(long)
+    public androidx.core.location.LocationRequestCompat$Builder setMaxUpdateDelayMillis(long)
+    public androidx.core.location.LocationRequestCompat$Builder setMaxUpdates(int)
 androidx.core.location.LocationRequestCompat$Quality
-androidx.core.location.LocationRequestCompat
+androidx.core.location.LocationRequestCompat:
+    private static final long IMPLICIT_MIN_UPDATE_INTERVAL
+    public static final long PASSIVE_INTERVAL
+    public static final int QUALITY_BALANCED_POWER_ACCURACY
+    public static final int QUALITY_HIGH_ACCURACY
+    public static final int QUALITY_LOW_POWER
 androidx.core.math.MathUtils:
     private void <init>()
     public static int addExact(int,int)
@@ -4482,16 +4580,12 @@ androidx.core.util.Preconditions:
     private void <init>()
     public static void checkArgument(boolean)
     public static void checkArgument(boolean,java.lang.Object)
-    public static varargs void checkArgument(boolean,java.lang.String,java.lang.Object[])
     public static float checkArgumentFinite(float,java.lang.String)
     public static double checkArgumentInRange(double,double,double,java.lang.String)
-    public static float checkArgumentInRange(float,float,float,java.lang.String)
     public static int checkArgumentInRange(int,int,int,java.lang.String)
-    public static long checkArgumentInRange(long,long,long,java.lang.String)
     public static int checkArgumentNonnegative(int,java.lang.String)
     public static int checkFlagsArgument(int,int)
     public static void checkState(boolean)
-    public static void checkState(boolean,java.lang.String)
     public static java.lang.CharSequence checkStringNotEmpty(java.lang.CharSequence)
     public static java.lang.CharSequence checkStringNotEmpty(java.lang.CharSequence,java.lang.Object)
     public static varargs java.lang.CharSequence checkStringNotEmpty(java.lang.CharSequence,java.lang.String,java.lang.Object[])
@@ -4514,7 +4608,15 @@ androidx.core.util.SparseIntArrayKt
 androidx.core.util.SparseLongArrayKt$keyIterator$1
 androidx.core.util.SparseLongArrayKt$valueIterator$1
 androidx.core.util.SparseLongArrayKt
-androidx.core.util.TimeUtils
+androidx.core.util.TimeUtils:
+    public static final int HUNDRED_DAY_FIELD_LEN
+    private static final int SECONDS_PER_DAY
+    private static final int SECONDS_PER_HOUR
+    private static final int SECONDS_PER_MINUTE
+    private void <init>()
+    public static void formatDuration(long,long,java.io.PrintWriter)
+    public static void formatDuration(long,java.io.PrintWriter)
+    public static void formatDuration(long,java.io.PrintWriter,int)
 androidx.core.util.TypedValueCompat$Api34Impl
 androidx.core.util.TypedValueCompat$ComplexDimensionUnit
 androidx.core.util.TypedValueCompat
@@ -11041,6 +11143,37 @@ androidx.window.reflection.ReflectionUtils:
     public final boolean validateImplementation$window_release(java.lang.Class,java.lang.Class)
     public static synthetic boolean validateReflection$window_release$default(java.lang.String,kotlin.jvm.functions.Function0,int,java.lang.Object)
 androidx.window.reflection.WindowExtensionsConstants
+com.baseflow.geolocator.GeolocatorLocationService:
+    private static final java.lang.String CHANNEL_ID
+    private static final int ONGOING_NOTIFICATION_ID
+    private static final java.lang.String TAG
+com.baseflow.geolocator.GeolocatorPlugin:
+    private static final java.lang.String TAG
+com.baseflow.geolocator.LocationServiceHandlerImpl:
+    private static final java.lang.String TAG
+com.baseflow.geolocator.MethodCallHandlerImpl:
+    private static final java.lang.String TAG
+com.baseflow.geolocator.R
+com.baseflow.geolocator.StreamHandlerImpl:
+    private static final java.lang.String TAG
+com.baseflow.geolocator.location.FusedLocationClient:
+    private static final java.lang.String TAG
+com.baseflow.geolocator.location.LocationManagerClient:
+    private static final long TWO_MINUTES
+com.baseflow.geolocator.location.LocationMapper:
+    public void <init>()
+com.baseflow.geolocator.location.LocationOptions:
+    public static final java.lang.String USE_MSL_ALTITUDE_EXTRA
+com.baseflow.geolocator.location.NmeaClient:
+    public static final java.lang.String GNSS_SATELLITES_USED_IN_FIX_EXTRA
+    public static final java.lang.String GNSS_SATELLITE_COUNT_EXTRA
+    public static final java.lang.String NMEA_ALTITUDE_EXTRA
+com.baseflow.geolocator.permission.PermissionManager:
+    private static final int PERMISSION_REQUEST_CODE
+com.baseflow.geolocator.permission.PermissionUtils:
+    public void <init>()
+com.baseflow.geolocator.utils.Utils:
+    public void <init>()
 com.example.air_track.R$drawable
 com.example.air_track.R$mipmap
 com.example.air_track.R$string
@@ -11583,8 +11716,6 @@ com.google.android.gms.auth.api.signin.internal.zbd:
     public final com.google.android.gms.common.api.PendingResult signOut(com.google.android.gms.common.api.GoogleApiClient)
     public final com.google.android.gms.common.api.OptionalPendingResult silentSignIn(com.google.android.gms.common.api.GoogleApiClient)
     private static final com.google.android.gms.auth.api.signin.GoogleSignInOptions zba(com.google.android.gms.common.api.GoogleApiClient)
-com.google.android.gms.auth.api.signin.internal.zbl:
-    public final synthetic bridge void setResult(java.lang.Object)
 com.google.android.gms.auth.api.signin.zbb:
     private void <init>()
 com.google.android.gms.auth.zzf
@@ -11845,7 +11976,6 @@ com.google.android.gms.common.api.GoogleApiClient:
     public abstract void disconnect()
     public abstract void dump(java.lang.String,java.io.FileDescriptor,java.io.PrintWriter,java.lang.String[])
     public static void dumpAll(java.lang.String,java.io.FileDescriptor,java.io.PrintWriter,java.lang.String[])
-    public com.google.android.gms.common.api.Api$Client getClient(com.google.android.gms.common.api.Api$AnyClientKey)
     public abstract com.google.android.gms.common.ConnectionResult getConnectionResult(com.google.android.gms.common.api.Api)
     public android.content.Context getContext()
     public boolean hasApi(com.google.android.gms.common.api.Api)
@@ -11881,9 +12011,10 @@ com.google.android.gms.common.api.PendingResults:
     public static com.google.android.gms.common.api.PendingResult immediatePendingResult(com.google.android.gms.common.api.Status)
 com.google.android.gms.common.api.ResolvableApiException:
     public android.app.PendingIntent getResolution()
-    public void startResolutionForResult(android.app.Activity,int)
 com.google.android.gms.common.api.ResolvingResultCallbacks
-com.google.android.gms.common.api.Response
+com.google.android.gms.common.api.Response:
+    public void <init>()
+    public void setResult(com.google.android.gms.common.api.Result)
 com.google.android.gms.common.api.ResultCallbacks:
     public void <init>()
     public final void onResult(com.google.android.gms.common.api.Result)
@@ -11894,7 +12025,6 @@ com.google.android.gms.common.api.Status:
     public android.app.PendingIntent getResolution()
     public boolean isCanceled()
     public boolean isInterrupted()
-    public void startResolutionForResult(android.app.Activity,int)
     public void startResolutionForResult(androidx.activity.result.ActivityResultLauncher)
 com.google.android.gms.common.api.TransformedResult:
     public abstract void andFinally(com.google.android.gms.common.api.ResultCallbacks)
@@ -11904,7 +12034,6 @@ com.google.android.gms.common.api.internal.BaseImplementation$ApiMethodImpl:
     protected void <init>(com.google.android.gms.common.api.Api$AnyClientKey,com.google.android.gms.common.api.GoogleApiClient)
     protected void <init>(com.google.android.gms.common.api.internal.BasePendingResult$CallbackHandler)
     public synthetic bridge void setResult(java.lang.Object)
-com.google.android.gms.common.api.internal.BaseImplementation$ResultHolder
 com.google.android.gms.common.api.internal.BaseImplementation
 com.google.android.gms.common.api.internal.BasePendingResult$CallbackHandler:
     public void <init>()
@@ -11923,21 +12052,11 @@ com.google.android.gms.common.api.internal.LifecycleActivity:
 com.google.android.gms.common.api.internal.LifecycleFragment:
     public abstract boolean isCreated()
     public abstract boolean isStarted()
-com.google.android.gms.common.api.internal.ListenerHolder$ListenerKey:
-    public java.lang.String toIdString()
-com.google.android.gms.common.api.internal.ListenerHolder$Notifier
 com.google.android.gms.common.api.internal.ListenerHolder:
-    void <init>(java.util.concurrent.Executor,java.lang.Object,java.lang.String)
-    public void clear()
-    public com.google.android.gms.common.api.internal.ListenerHolder$ListenerKey getListenerKey()
     public boolean hasListener()
-    public void notifyListener(com.google.android.gms.common.api.internal.ListenerHolder$Notifier)
-    final void zaa(com.google.android.gms.common.api.internal.ListenerHolder$Notifier)
 com.google.android.gms.common.api.internal.ListenerHolders:
     private final java.util.Set zaa
     public void <init>()
-    public static com.google.android.gms.common.api.internal.ListenerHolder createListenerHolder(java.lang.Object,java.util.concurrent.Executor,java.lang.String)
-    public static com.google.android.gms.common.api.internal.ListenerHolder$ListenerKey createListenerKey(java.lang.Object,java.lang.String)
     public final com.google.android.gms.common.api.internal.ListenerHolder zaa(java.lang.Object,android.os.Looper,java.lang.String)
     public final void zab()
 com.google.android.gms.common.api.internal.NonGmsServiceBrokerClient:
@@ -11993,20 +12112,15 @@ com.google.android.gms.common.api.internal.OptionalPendingResultImpl:
     public final com.google.android.gms.common.api.TransformedResult then(com.google.android.gms.common.api.ResultTransform)
 com.google.android.gms.common.api.internal.PendingResultFacade
 com.google.android.gms.common.api.internal.RegisterListenerMethod:
-    private final com.google.android.gms.common.api.internal.ListenerHolder zaa
-    private final com.google.android.gms.common.Feature[] zab
-    private final boolean zac
-    private final int zad
     protected void <init>(com.google.android.gms.common.api.internal.ListenerHolder)
     protected void <init>(com.google.android.gms.common.api.internal.ListenerHolder,com.google.android.gms.common.Feature[],boolean)
-    protected void <init>(com.google.android.gms.common.api.internal.ListenerHolder,com.google.android.gms.common.Feature[],boolean,int)
-com.google.android.gms.common.api.internal.RegistrationMethods$Builder
-com.google.android.gms.common.api.internal.RegistrationMethods:
-    synthetic void <init>(com.google.android.gms.common.api.internal.RegisterListenerMethod,com.google.android.gms.common.api.internal.UnregisterListenerMethod,java.lang.Runnable,com.google.android.gms.common.api.internal.zacn)
-    public static com.google.android.gms.common.api.internal.RegistrationMethods$Builder builder()
+com.google.android.gms.common.api.internal.RegistrationMethods$Builder:
+    private void <init>()
+    public com.google.android.gms.common.api.internal.RegistrationMethods$Builder onConnectionSuspended(java.lang.Runnable)
+    public com.google.android.gms.common.api.internal.RegistrationMethods$Builder setAutoResolveMissingFeatures(boolean)
+    public varargs com.google.android.gms.common.api.internal.RegistrationMethods$Builder setFeatures(com.google.android.gms.common.Feature[])
 com.google.android.gms.common.api.internal.SignInConnectionListener:
     public abstract void onComplete()
-com.google.android.gms.common.api.internal.StatusCallback
 com.google.android.gms.common.api.internal.StatusPendingResult:
     public void <init>(android.os.Looper)
 com.google.android.gms.common.api.internal.TaskApiCall$Builder:
@@ -12017,9 +12131,6 @@ com.google.android.gms.common.api.internal.TaskApiCall:
 com.google.android.gms.common.api.internal.TaskUtil:
     public void <init>()
     public static com.google.android.gms.tasks.Task toVoidTaskThatFailsOnFalse(com.google.android.gms.tasks.Task)
-com.google.android.gms.common.api.internal.UnregisterListenerMethod:
-    private final com.google.android.gms.common.api.internal.ListenerHolder$ListenerKey zaa
-    protected void <init>(com.google.android.gms.common.api.internal.ListenerHolder$ListenerKey)
 com.google.android.gms.common.api.internal.zaa
 com.google.android.gms.common.api.internal.zaaa
 com.google.android.gms.common.api.internal.zaag:
@@ -12079,15 +12190,9 @@ com.google.android.gms.common.api.internal.zaby:
     public final void onResult(com.google.android.gms.common.api.Status)
 com.google.android.gms.common.api.internal.zabz
 com.google.android.gms.common.api.internal.zaca
-com.google.android.gms.common.api.internal.zacb
 com.google.android.gms.common.api.internal.zacc
 com.google.android.gms.common.api.internal.zacf
 com.google.android.gms.common.api.internal.zacg
-com.google.android.gms.common.api.internal.zacj
-com.google.android.gms.common.api.internal.zack
-com.google.android.gms.common.api.internal.zacl
-com.google.android.gms.common.api.internal.zacm
-com.google.android.gms.common.api.internal.zacn
 com.google.android.gms.common.api.internal.zacp:
     private final com.google.android.gms.common.api.Status zaa
     public void <init>(com.google.android.gms.common.api.Status)
@@ -12203,7 +12308,6 @@ com.google.android.gms.common.internal.BaseGmsClient:
     protected void <init>(android.content.Context,android.os.Handler,com.google.android.gms.common.internal.GmsClientSupervisor,com.google.android.gms.common.GoogleApiAvailabilityLight,int,com.google.android.gms.common.internal.BaseGmsClient$BaseConnectionCallbacks,com.google.android.gms.common.internal.BaseGmsClient$BaseOnConnectionFailedListener)
 com.google.android.gms.common.internal.BinderWrapper
 com.google.android.gms.common.internal.CallbackExecutor
-com.google.android.gms.common.internal.ClientIdentity
 com.google.android.gms.common.internal.ClientSettings:
     public void <init>(android.accounts.Account,java.util.Set,java.util.Map,int,android.view.View,java.lang.String,java.lang.String,com.google.android.gms.signin.SignInOptions)
     public static com.google.android.gms.common.internal.ClientSettings createDefault(android.content.Context)
@@ -12248,7 +12352,9 @@ com.google.android.gms.common.internal.HideFirstParty
 com.google.android.gms.common.internal.IAccountAccessor$Stub:
     public void <init>()
     protected final boolean zza(int,android.os.Parcel,android.os.Parcel,int)
-com.google.android.gms.common.internal.ICancelToken$Stub
+com.google.android.gms.common.internal.ICancelToken$Stub:
+    public void <init>()
+    protected final boolean zza(int,android.os.Parcel,android.os.Parcel,int)
 com.google.android.gms.common.internal.IGmsServiceBroker$Stub
 com.google.android.gms.common.internal.ImagesContract
 com.google.android.gms.common.internal.MethodInvocation:
@@ -12302,14 +12408,12 @@ com.google.android.gms.common.internal.safeparcel.SafeParcelReader:
     public static android.util.SparseLongArray createSparseLongArray(android.os.Parcel,int)
     public static android.util.SparseArray createStringSparseArray(android.os.Parcel,int)
     public static android.util.SparseArray createTypedSparseArray(android.os.Parcel,int,android.os.Parcelable$Creator)
-    public static byte readByte(android.os.Parcel,int)
     public static char readChar(android.os.Parcel,int)
     public static void readList(android.os.Parcel,int,java.util.List,java.lang.ClassLoader)
     public static android.app.PendingIntent readPendingIntent(android.os.Parcel,int)
 com.google.android.gms.common.internal.safeparcel.SafeParcelWriter:
     private void <init>()
     public static void writeBooleanList(android.os.Parcel,int,java.util.List,boolean)
-    public static void writeByte(android.os.Parcel,int,byte)
     public static void writeByteArraySparseArray(android.os.Parcel,int,android.util.SparseArray,boolean)
     public static void writeChar(android.os.Parcel,int,char)
     public static void writeCharArray(android.os.Parcel,int,char[],boolean)
@@ -12362,7 +12466,6 @@ com.google.android.gms.common.internal.service.zah
 com.google.android.gms.common.internal.service.zaj
 com.google.android.gms.common.internal.service.zak
 com.google.android.gms.common.internal.service.zal
-com.google.android.gms.common.internal.zaa
 com.google.android.gms.common.internal.zaaa
 com.google.android.gms.common.internal.zab:
     public void <init>(java.util.Set)
@@ -12400,7 +12503,6 @@ com.google.android.gms.common.internal.zzo:
 com.google.android.gms.common.internal.zzs:
     final void zzi(java.util.concurrent.Executor)
     final void zzj(android.os.Looper)
-com.google.android.gms.common.internal.zzx
 com.google.android.gms.common.logging.Logger:
     public java.lang.String getTag()
     public varargs void i(java.lang.String,java.lang.Object[])
@@ -12601,7 +12703,6 @@ com.google.android.gms.common.util.PlatformVersion:
     public static boolean isAtLeastM()
     public static boolean isAtLeastSv2()
     public static boolean isAtLeastT()
-    public static boolean isAtLeastU()
     public static boolean isAtLeastV()
 com.google.android.gms.common.util.Predicate
 com.google.android.gms.common.util.ProcessUtils:
@@ -12619,8 +12720,6 @@ com.google.android.gms.common.util.WorkSourceUtil:
     public static int get(android.os.WorkSource,int)
     public static java.lang.String getName(android.os.WorkSource,int)
     public static java.util.List getNames(android.os.WorkSource)
-    public static boolean isEmpty(android.os.WorkSource)
-    public static int size(android.os.WorkSource)
 com.google.android.gms.common.util.zze
 com.google.android.gms.common.wrappers.AttributionSourceWrapper:
     private final android.content.AttributionSource zza
@@ -12875,6 +12974,206 @@ com.google.android.gms.fido.u2f.zza
 com.google.android.gms.fido.u2f.zzb
 com.google.android.gms.fido.u2f.zzc
 com.google.android.gms.fido.u2f.zzd
+com.google.android.gms.location.ActivityRecognition:
+    private void <init>()
+    public static com.google.android.gms.location.ActivityRecognitionClient getClient(android.app.Activity)
+    public static com.google.android.gms.location.ActivityRecognitionClient getClient(android.content.Context)
+com.google.android.gms.location.ActivityRecognitionApi:
+    public abstract com.google.android.gms.common.api.PendingResult removeActivityUpdates(com.google.android.gms.common.api.GoogleApiClient,android.app.PendingIntent)
+    public abstract com.google.android.gms.common.api.PendingResult requestActivityUpdates(com.google.android.gms.common.api.GoogleApiClient,long,android.app.PendingIntent)
+com.google.android.gms.location.ActivityRecognitionClient
+com.google.android.gms.location.ActivityRecognitionResult
+com.google.android.gms.location.ActivityTransition$Builder
+com.google.android.gms.location.ActivityTransition$SupportedActivityTransition
+com.google.android.gms.location.ActivityTransition:
+    public static final int ACTIVITY_TRANSITION_ENTER
+    public static final int ACTIVITY_TRANSITION_EXIT
+    public static void zza(int)
+com.google.android.gms.location.ActivityTransitionEvent
+com.google.android.gms.location.ActivityTransitionRequest:
+    public void <init>(java.util.List)
+    public void serializeToIntentExtra(android.content.Intent)
+com.google.android.gms.location.ActivityTransitionResult
+com.google.android.gms.location.CurrentLocationRequest$Builder:
+    public void <init>(com.google.android.gms.location.CurrentLocationRequest)
+    public com.google.android.gms.location.CurrentLocationRequest$Builder setDurationMillis(long)
+    public com.google.android.gms.location.CurrentLocationRequest$Builder setGranularity(int)
+    public com.google.android.gms.location.CurrentLocationRequest$Builder setMaxUpdateAgeMillis(long)
+com.google.android.gms.location.CurrentLocationRequest:
+    public final com.google.android.gms.internal.location.zze zzd()
+com.google.android.gms.location.DetectedActivity
+com.google.android.gms.location.DeviceOrientation$Builder
+com.google.android.gms.location.DeviceOrientation:
+    static synthetic void zzb(float[])
+    final synthetic float[] zzc()
+    final synthetic float zzd()
+    final synthetic float zze()
+    final synthetic long zzf()
+    final synthetic byte zzg()
+    final synthetic float zzh()
+    final synthetic float zzi()
+com.google.android.gms.location.DeviceOrientationRequest$Builder:
+    public void <init>(com.google.android.gms.location.DeviceOrientationRequest)
+com.google.android.gms.location.DeviceOrientationRequest:
+    public static final long OUTPUT_PERIOD_DEFAULT
+    public static final long OUTPUT_PERIOD_FAST
+    public static final long OUTPUT_PERIOD_MEDIUM
+    final synthetic long zza()
+    final synthetic boolean zzb()
+com.google.android.gms.location.FusedLocationProviderApi:
+    public static final java.lang.String KEY_LOCATION_CHANGED
+    public static final java.lang.String KEY_MOCK_LOCATION
+    public abstract com.google.android.gms.common.api.PendingResult flushLocations(com.google.android.gms.common.api.GoogleApiClient)
+    public abstract android.location.Location getLastLocation(com.google.android.gms.common.api.GoogleApiClient)
+    public abstract com.google.android.gms.location.LocationAvailability getLocationAvailability(com.google.android.gms.common.api.GoogleApiClient)
+    public abstract com.google.android.gms.common.api.PendingResult removeLocationUpdates(com.google.android.gms.common.api.GoogleApiClient,android.app.PendingIntent)
+    public abstract com.google.android.gms.common.api.PendingResult removeLocationUpdates(com.google.android.gms.common.api.GoogleApiClient,com.google.android.gms.location.LocationCallback)
+    public abstract com.google.android.gms.common.api.PendingResult removeLocationUpdates(com.google.android.gms.common.api.GoogleApiClient,com.google.android.gms.location.LocationListener)
+    public abstract com.google.android.gms.common.api.PendingResult requestLocationUpdates(com.google.android.gms.common.api.GoogleApiClient,com.google.android.gms.location.LocationRequest,android.app.PendingIntent)
+    public abstract com.google.android.gms.common.api.PendingResult requestLocationUpdates(com.google.android.gms.common.api.GoogleApiClient,com.google.android.gms.location.LocationRequest,com.google.android.gms.location.LocationCallback,android.os.Looper)
+    public abstract com.google.android.gms.common.api.PendingResult requestLocationUpdates(com.google.android.gms.common.api.GoogleApiClient,com.google.android.gms.location.LocationRequest,com.google.android.gms.location.LocationListener)
+    public abstract com.google.android.gms.common.api.PendingResult requestLocationUpdates(com.google.android.gms.common.api.GoogleApiClient,com.google.android.gms.location.LocationRequest,com.google.android.gms.location.LocationListener,android.os.Looper)
+    public abstract com.google.android.gms.common.api.PendingResult setMockLocation(com.google.android.gms.common.api.GoogleApiClient,android.location.Location)
+    public abstract com.google.android.gms.common.api.PendingResult setMockMode(com.google.android.gms.common.api.GoogleApiClient,boolean)
+com.google.android.gms.location.FusedLocationProviderClient:
+    public static final java.lang.String KEY_MOCK_LOCATION
+    public static final java.lang.String KEY_VERTICAL_ACCURACY
+    public abstract com.google.android.gms.tasks.Task flushLocations()
+    public abstract com.google.android.gms.tasks.Task getCurrentLocation(int,com.google.android.gms.tasks.CancellationToken)
+    public abstract com.google.android.gms.tasks.Task getCurrentLocation(com.google.android.gms.location.CurrentLocationRequest,com.google.android.gms.tasks.CancellationToken)
+    public abstract com.google.android.gms.tasks.Task getLastLocation(com.google.android.gms.location.LastLocationRequest)
+    public abstract com.google.android.gms.tasks.Task getLocationAvailability()
+    public abstract com.google.android.gms.tasks.Task removeDeviceOrientationUpdates(com.google.android.gms.location.DeviceOrientationListener)
+    public abstract com.google.android.gms.tasks.Task removeLocationUpdates(android.app.PendingIntent)
+    public abstract com.google.android.gms.tasks.Task removeLocationUpdates(com.google.android.gms.location.LocationListener)
+    public abstract com.google.android.gms.tasks.Task requestDeviceOrientationUpdates(com.google.android.gms.location.DeviceOrientationRequest,com.google.android.gms.location.DeviceOrientationListener,android.os.Looper)
+    public abstract com.google.android.gms.tasks.Task requestDeviceOrientationUpdates(com.google.android.gms.location.DeviceOrientationRequest,java.util.concurrent.Executor,com.google.android.gms.location.DeviceOrientationListener)
+    public abstract com.google.android.gms.tasks.Task requestLocationUpdates(com.google.android.gms.location.LocationRequest,android.app.PendingIntent)
+    public abstract com.google.android.gms.tasks.Task requestLocationUpdates(com.google.android.gms.location.LocationRequest,com.google.android.gms.location.LocationListener,android.os.Looper)
+    public abstract com.google.android.gms.tasks.Task requestLocationUpdates(com.google.android.gms.location.LocationRequest,java.util.concurrent.Executor,com.google.android.gms.location.LocationCallback)
+    public abstract com.google.android.gms.tasks.Task requestLocationUpdates(com.google.android.gms.location.LocationRequest,java.util.concurrent.Executor,com.google.android.gms.location.LocationListener)
+    public abstract com.google.android.gms.tasks.Task setMockLocation(android.location.Location)
+    public abstract com.google.android.gms.tasks.Task setMockMode(boolean)
+com.google.android.gms.location.FusedOrientationProviderClient
+com.google.android.gms.location.Geofence$Builder
+com.google.android.gms.location.Geofence$GeofenceTransition
+com.google.android.gms.location.Geofence$TransitionTypes
+com.google.android.gms.location.Geofence:
+    public static final int GEOFENCE_TRANSITION_DWELL
+    public static final int GEOFENCE_TRANSITION_ENTER
+    public static final int GEOFENCE_TRANSITION_EXIT
+    public static final long NEVER_EXPIRE
+    public abstract long getExpirationTime()
+    public abstract double getLatitude()
+    public abstract int getLoiteringDelay()
+    public abstract double getLongitude()
+    public abstract int getNotificationResponsiveness()
+    public abstract float getRadius()
+    public abstract java.lang.String getRequestId()
+    public abstract int getTransitionTypes()
+com.google.android.gms.location.GeofenceStatusCodes:
+    public static final int GEOFENCE_INSUFFICIENT_LOCATION_PERMISSION
+    public static final int GEOFENCE_NOT_AVAILABLE
+    public static final int GEOFENCE_REQUEST_TOO_FREQUENT
+    public static final int GEOFENCE_TOO_MANY_GEOFENCES
+    public static final int GEOFENCE_TOO_MANY_PENDING_INTENTS
+    private void <init>()
+    public static java.lang.String getStatusCodeString(int)
+com.google.android.gms.location.GeofencingApi:
+    public abstract com.google.android.gms.common.api.PendingResult addGeofences(com.google.android.gms.common.api.GoogleApiClient,com.google.android.gms.location.GeofencingRequest,android.app.PendingIntent)
+    public abstract com.google.android.gms.common.api.PendingResult addGeofences(com.google.android.gms.common.api.GoogleApiClient,java.util.List,android.app.PendingIntent)
+    public abstract com.google.android.gms.common.api.PendingResult removeGeofences(com.google.android.gms.common.api.GoogleApiClient,android.app.PendingIntent)
+    public abstract com.google.android.gms.common.api.PendingResult removeGeofences(com.google.android.gms.common.api.GoogleApiClient,java.util.List)
+com.google.android.gms.location.GeofencingClient
+com.google.android.gms.location.GeofencingEvent
+com.google.android.gms.location.GeofencingRequest$InitialTrigger
+com.google.android.gms.location.GeofencingRequest:
+    public static final int INITIAL_TRIGGER_DWELL
+    public static final int INITIAL_TRIGGER_ENTER
+    public static final int INITIAL_TRIGGER_EXIT
+    public java.util.List getGeofences()
+com.google.android.gms.location.Granularity
+com.google.android.gms.location.LastLocationRequest$Builder:
+    public void <init>(com.google.android.gms.location.LastLocationRequest)
+    public com.google.android.gms.location.LastLocationRequest$Builder setGranularity(int)
+    public com.google.android.gms.location.LastLocationRequest$Builder setMaxUpdateAgeMillis(long)
+com.google.android.gms.location.LastLocationRequest:
+    public final boolean zza()
+    public final com.google.android.gms.internal.location.zze zzb()
+com.google.android.gms.location.LocationAvailability:
+    public static com.google.android.gms.location.LocationAvailability extractLocationAvailability(android.content.Intent)
+    public static boolean hasLocationAvailability(android.content.Intent)
+com.google.android.gms.location.LocationRequest$Builder:
+    public static final long IMPLICIT_MAX_UPDATE_AGE
+    public static final long IMPLICIT_MIN_UPDATE_INTERVAL
+com.google.android.gms.location.LocationRequest:
+    public static final int PRIORITY_BALANCED_POWER_ACCURACY
+    public static final int PRIORITY_HIGH_ACCURACY
+    public static final int PRIORITY_LOW_POWER
+    public static final int PRIORITY_NO_POWER
+    public void <init>()
+    public long getExpirationTime()
+    public long getFastestInterval()
+    public long getInterval()
+    public long getMaxWaitTime()
+    public int getNumUpdates()
+    public float getSmallestDisplacement()
+    public boolean isFastestIntervalExplicitlySet()
+    public com.google.android.gms.location.LocationRequest setExpirationDuration(long)
+    public com.google.android.gms.location.LocationRequest setExpirationTime(long)
+    public com.google.android.gms.location.LocationRequest setMaxWaitTime(long)
+    public com.google.android.gms.location.LocationRequest setNumUpdates(int)
+    public com.google.android.gms.location.LocationRequest setWaitForAccurateLocation(boolean)
+com.google.android.gms.location.LocationResult:
+    public static com.google.android.gms.location.LocationResult create(java.util.List)
+    public static com.google.android.gms.location.LocationResult extractResult(android.content.Intent)
+    public static boolean hasResult(android.content.Intent)
+com.google.android.gms.location.LocationServices:
+    private void <init>()
+    public static com.google.android.gms.location.FusedLocationProviderClient getFusedLocationProviderClient(android.app.Activity)
+    public static com.google.android.gms.location.FusedOrientationProviderClient getFusedOrientationProviderClient(android.app.Activity)
+    public static com.google.android.gms.location.FusedOrientationProviderClient getFusedOrientationProviderClient(android.content.Context)
+    public static com.google.android.gms.location.GeofencingClient getGeofencingClient(android.app.Activity)
+    public static com.google.android.gms.location.GeofencingClient getGeofencingClient(android.content.Context)
+    public static com.google.android.gms.location.SettingsClient getSettingsClient(android.app.Activity)
+com.google.android.gms.location.LocationSettingsRequest$Builder:
+    public com.google.android.gms.location.LocationSettingsRequest$Builder addAllLocationRequests(java.util.Collection)
+    public com.google.android.gms.location.LocationSettingsRequest$Builder setAlwaysShow(boolean)
+    public com.google.android.gms.location.LocationSettingsRequest$Builder setNeedBle(boolean)
+com.google.android.gms.location.LocationSettingsStates:
+    public static com.google.android.gms.location.LocationSettingsStates fromIntent(android.content.Intent)
+    public boolean isLocationPresent()
+    public boolean isLocationUsable()
+com.google.android.gms.location.LocationSettingsStatusCodes
+com.google.android.gms.location.LocationStatusCodes
+com.google.android.gms.location.Priority
+com.google.android.gms.location.R
+com.google.android.gms.location.SettingsApi:
+    public abstract com.google.android.gms.common.api.PendingResult checkLocationSettings(com.google.android.gms.common.api.GoogleApiClient,com.google.android.gms.location.LocationSettingsRequest)
+com.google.android.gms.location.SettingsClient:
+    public abstract com.google.android.gms.tasks.Task isGoogleLocationAccuracyEnabled()
+com.google.android.gms.location.SleepClassifyEvent
+com.google.android.gms.location.SleepSegmentEvent
+com.google.android.gms.location.SleepSegmentRequest:
+    public static final int CLASSIFY_EVENTS_ONLY
+    public static final int SEGMENT_AND_CLASSIFY_EVENTS
+    public static final int SEGMENT_EVENTS_ONLY
+    public void <init>(int)
+    public static com.google.android.gms.location.SleepSegmentRequest getDefaultSleepSegmentRequest()
+com.google.android.gms.location.zzao
+com.google.android.gms.location.zzap
+com.google.android.gms.location.zzd
+com.google.android.gms.location.zzf
+com.google.android.gms.location.zzi
+com.google.android.gms.location.zzk
+com.google.android.gms.location.zzl
+com.google.android.gms.location.zzr:
+    public final void zzd(com.google.android.gms.location.DeviceOrientation)
+com.google.android.gms.location.zzu:
+    public final void zzd(com.google.android.gms.location.LocationResult)
+    public final void zze(com.google.android.gms.location.LocationAvailability)
+com.google.android.gms.location.zzx:
+    public final void zzd(android.location.Location)
 com.google.android.gms.measurement.AppMeasurement$ConditionalUserProperty:
     public void <init>()
     public void <init>(com.google.android.gms.measurement.AppMeasurement$ConditionalUserProperty)
@@ -23780,7 +24079,6 @@ io.flutter.embedding.engine.FlutterEngineConnectionRegistry$FlutterEngineActivit
     public void removeOnSaveStateListener(io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding$OnSaveInstanceStateListener)
     public void removeOnUserLeaveHintListener(io.flutter.plugin.common.PluginRegistry$UserLeaveHintListener)
     public void removeOnWindowFocusChangedListener(io.flutter.plugin.common.PluginRegistry$WindowFocusChangedListener)
-    public void removeRequestPermissionsResultListener(io.flutter.plugin.common.PluginRegistry$RequestPermissionsResultListener)
 io.flutter.embedding.engine.FlutterEngineConnectionRegistry$FlutterEngineBroadcastReceiverPluginBinding:
     private final android.content.BroadcastReceiver broadcastReceiver
     void <init>(android.content.BroadcastReceiver)
@@ -23990,7 +24288,6 @@ io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding:
     public abstract void removeOnSaveStateListener(io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding$OnSaveInstanceStateListener)
     public abstract void removeOnUserLeaveHintListener(io.flutter.plugin.common.PluginRegistry$UserLeaveHintListener)
     public abstract void removeOnWindowFocusChangedListener(io.flutter.plugin.common.PluginRegistry$WindowFocusChangedListener)
-    public abstract void removeRequestPermissionsResultListener(io.flutter.plugin.common.PluginRegistry$RequestPermissionsResultListener)
 io.flutter.embedding.engine.plugins.broadcastreceiver.BroadcastReceiverControlSurface
 io.flutter.embedding.engine.plugins.broadcastreceiver.BroadcastReceiverPluginBinding:
     public abstract android.content.BroadcastReceiver getBroadcastReceiver()
@@ -24101,7 +24398,6 @@ io.flutter.plugin.common.JSONUtil:
     private void <init>()
     public static java.lang.Object unwrap(java.lang.Object)
 io.flutter.plugin.common.MethodCall:
-    public java.lang.Object argument(java.lang.String)
     public boolean hasArgument(java.lang.String)
 io.flutter.plugin.common.MethodChannel:
     private static final java.lang.String TAG
@@ -34107,6 +34403,11 @@ org.jetbrains.annotations.UnmodifiableView
 org.jetbrains.annotations.VisibleForTesting
 _COROUTINE.ArtificialStackFrames
 _COROUTINE.CoroutineDebuggingKt
+android.support.v4.app.INotificationSideChannel$Stub$Proxy:
+    public final void notify$1()
+android.support.v4.app.INotificationSideChannel$_Parcel
+android.support.v4.app.INotificationSideChannel:
+    public abstract void notify$1()
 androidx.activity.BackEventCompat$Companion
 androidx.activity.BackEventCompat:
     public static final androidx.activity.BackEventCompat$Companion Companion
@@ -35497,10 +35798,10 @@ androidx.core.app.NotificationCompat$Builder:
     public final void setContentTitle(java.lang.String)
     public static androidx.core.app.NotificationCompat$Builder setDefaults()
     public static androidx.core.app.NotificationCompat$Builder setDeleteIntent()
-    public static void setFlag()
     public static androidx.core.app.NotificationCompat$Builder setLights()
     public static androidx.core.app.NotificationCompat$Builder setLocalOnly()
     public static androidx.core.app.NotificationCompat$Builder setNumber()
+    public static androidx.core.app.NotificationCompat$Builder setOngoing()
     public static androidx.core.app.NotificationCompat$Builder setPriority()
     public static androidx.core.app.NotificationCompat$Builder setShowWhen()
     public static androidx.core.app.NotificationCompat$Builder setSmallIcon()
@@ -35536,10 +35837,24 @@ androidx.core.app.NotificationCompatBuilder:
     public static android.content.Context getContext()
     public static void removeSoundAndVibration()
 androidx.core.app.NotificationCompatJellybean
+androidx.core.app.NotificationManagerCompat$NotifyTask:
+    public final java.lang.String tag
+androidx.core.app.NotificationManagerCompat$SideChannelManager:
+    public final android.os.HandlerThread mHandlerThread
+    public static boolean ensureServiceBound()
+    public final void ensureServiceUnbound(androidx.core.app.NotificationManagerCompat$SideChannelManager$ListenerRecord)
+    public static void handleQueueTask()
+    public static void handleRetryListenerQueue()
+    public static void handleServiceConnected()
+    public static void handleServiceDisconnected()
+    public static void queueTask()
+    public static void updateListenerMap()
+androidx.core.app.NotificationManagerCompat$Task
 androidx.core.app.NotificationManagerCompat:
-    public static java.util.Set sEnabledNotificationListenerPackages
-    public static final java.lang.Object sEnabledNotificationListenersLock
-    public static final java.lang.Object sLock
+    public static void createNotificationChannel()
+    public static void notify$1()
+    public static void notify$2()
+    public static void pushSideChannelQueue()
 androidx.core.app.OnMultiWindowModeChangedProvider:
     public abstract void addOnMultiWindowModeChangedListener(androidx.fragment.app.FragmentManager$$InternalSyntheticLambda$1$1ede72cf1b4e59ef57784f471fe56f29e3692f8b9baaf1f3a7ba8cc4b2d498d2$2)
     public abstract void removeOnMultiWindowModeChangedListener(androidx.fragment.app.FragmentManager$$InternalSyntheticLambda$1$1ede72cf1b4e59ef57784f471fe56f29e3692f8b9baaf1f3a7ba8cc4b2d498d2$2)
@@ -35733,6 +36048,33 @@ androidx.core.graphics.drawable.WrappedDrawableApi21
 androidx.core.graphics.drawable.WrappedDrawableState
 androidx.core.internal.view.SupportMenuItem:
     public abstract androidx.core.internal.view.SupportMenuItem setSupportActionProvider()
+androidx.core.location.LocationCompat:
+    public static boolean containsExtra(android.location.Location,java.lang.String)
+androidx.core.location.LocationListenerCompat$-CC
+androidx.core.location.LocationListenerCompat:
+    public abstract void onFlushComplete(int)
+    public abstract void onLocationChanged(java.util.List)
+androidx.core.location.LocationManagerCompat$$InternalSyntheticThrowCCEIfNotNull$17$34c02d892fcb9b619a0c2abd241e01d4bb980a48b321195bc5a1f315a619f043$0
+androidx.core.location.LocationManagerCompat$LocationListenerKey
+androidx.core.location.LocationManagerCompat$LocationListenerTransport:
+    public abstract androidx.core.location.LocationManagerCompat$LocationListenerKey getKey()
+    public abstract void unregister()
+androidx.core.location.LocationRequestCompat$Api19Impl:
+    public static java.lang.reflect.Method sSetExpireInMethod
+    public static java.lang.reflect.Method sSetNumUpdatesMethod
+androidx.core.location.LocationRequestCompat$Builder
+androidx.core.location.LocationRequestCompat:
+    public final long mDurationMillis
+    public final long mMaxUpdateDelayMillis
+    public final int mMaxUpdates
+    public static long getDurationMillis()
+    public static long getIntervalMillis()
+    public static long getMaxUpdateDelayMillis()
+    public static int getMaxUpdates()
+    public static float getMinUpdateDistanceMeters()
+    public final long getMinUpdateIntervalMillis()
+    public static int getQuality()
+    public static android.location.LocationRequest toLocationRequest()
 androidx.core.math.MathUtils
 androidx.core.os.CancellationSignal$OnCancelListener
 androidx.core.os.CancellationSignal
@@ -35826,8 +36168,11 @@ androidx.core.util.ObjectsCompat
 androidx.core.util.Pools$Pool
 androidx.core.util.Pools$SimplePool:
     public static boolean isInPool()
-androidx.core.util.Preconditions
+androidx.core.util.Preconditions:
+    public static void checkArgumentNonnegative(int)
 androidx.core.util.Supplier
+androidx.core.util.TimeUtils:
+    public static int accumField(int,int,boolean,int)
 androidx.core.view.AccessibilityDelegateCompat:
     public static boolean dispatchPopulateAccessibilityEvent()
     public static androidx.core.view.accessibility.AccessibilityNodeProviderCompat getAccessibilityNodeProvider()
@@ -36789,7 +37134,7 @@ androidx.datastore.preferences.protobuf.ExtensionRegistryLite:
 androidx.datastore.preferences.protobuf.ExtensionSchema
 androidx.datastore.preferences.protobuf.ExtensionSchemaLite$$InternalSyntheticThrowCCEIfNotNull$104$30b2d5c35521e6544704c637079c55a0910a4c12d4d2207553564023210d211f$0
 androidx.datastore.preferences.protobuf.ExtensionSchemaLite$$InternalSyntheticThrowCCEIfNotNull$104$520b94fdec3d3f07cec41d320e347e8a8d58aa93dfce44cf31afc009f56675ae$0
-androidx.datastore.preferences.protobuf.ExtensionSchemaLite$$InternalSyntheticThrowCCEIfNotNull$115$41d7c8792b18fba4d931d6e1cdc30f17f9f2b131ad2f06c10c840ac1c9730562$0
+androidx.datastore.preferences.protobuf.ExtensionSchemaLite$$InternalSyntheticThrowCCEIfNotNull$114$41d7c8792b18fba4d931d6e1cdc30f17f9f2b131ad2f06c10c840ac1c9730562$0
 androidx.datastore.preferences.protobuf.ExtensionSchemaLite$$InternalSyntheticThrowCCEIfNotNull$15$6d276455942cfae5e599eaccba4decd95f9d3ba1ab192bba846e65c55222f6dd$0
 androidx.datastore.preferences.protobuf.ExtensionSchemaLite$$InternalSyntheticThrowCCEIfNotNull$15$e25c184836d93970789fa5f6a4f1a231cfa9a3bf94c8a284869e72f64ed3315b$0
 androidx.datastore.preferences.protobuf.ExtensionSchemaLite$$InternalSyntheticThrowCCEIfNotNull$74$3e34cb2f140969c0619dca7f35f13bbe35268ec1c08002245940249bce97f47e$0
@@ -36809,7 +37154,7 @@ androidx.datastore.preferences.protobuf.ExtensionSchemas:
     public static androidx.datastore.preferences.protobuf.ExtensionSchemaLite full()
     public static androidx.datastore.preferences.protobuf.ExtensionSchemaLite lite()
 androidx.datastore.preferences.protobuf.FieldInfo
-androidx.datastore.preferences.protobuf.FieldSet$$InternalSyntheticThrowCCEIfNotNull$112$7ac61fd66721836dfa6ff5d2712b24289d572eb1425f0a27386a1552db803d03$0
+androidx.datastore.preferences.protobuf.FieldSet$$InternalSyntheticThrowCCEIfNotNull$111$7ac61fd66721836dfa6ff5d2712b24289d572eb1425f0a27386a1552db803d03$0
 androidx.datastore.preferences.protobuf.FieldSet$$InternalSyntheticThrowCCEIfNotNull$23$2a304ff24c83803e486d4d7659f8b9a253df2c43d07261e6b3d8235b06f28689$0
 androidx.datastore.preferences.protobuf.FieldSet$$InternalSyntheticThrowCCEIfNotNull$70$9c9b36fdaa7372eea519abead43a2de1eec8106073390dcb8e1e0351de6e77e7$0
 androidx.datastore.preferences.protobuf.FieldSet$$InternalSyntheticThrowCCEIfNotNull$72$b56f1e7843a97fadff060602d217a55c8be861562d551059c4d5f209b4f0a481$0
@@ -37537,10 +37882,10 @@ androidx.fragment.app.FragmentLifecycleCallbacksDispatcher$$InternalSyntheticThr
 androidx.fragment.app.FragmentLifecycleCallbacksDispatcher$FragmentLifecycleCallbacksHolder
 androidx.fragment.app.FragmentLifecycleCallbacksDispatcher:
     public final void dispatchOnFragmentViewCreated(androidx.fragment.app.Fragment,boolean)
-androidx.fragment.app.FragmentManager$$InternalSyntheticThrowCCEIfNotNull$142$38310c1fbeb590885a869c34445dd6a41dd30585e52dc29e64f3656596404d15$0
-androidx.fragment.app.FragmentManager$$InternalSyntheticThrowCCEIfNotNull$142$38310c1fbeb590885a869c34445dd6a41dd30585e52dc29e64f3656596404d15$1
-androidx.fragment.app.FragmentManager$$InternalSyntheticThrowCCEIfNotNull$151$5def81799f4e480971deb6f4ba60ac23ab69c377367e533c13f7a78b8b9d120b$0
-androidx.fragment.app.FragmentManager$$InternalSyntheticThrowCCEIfNotNull$153$e26a5b4c69c0ad38fc44d5abfd094c9cffa7ad59bbfcc0d97c4455fa673e6d94$0
+androidx.fragment.app.FragmentManager$$InternalSyntheticThrowCCEIfNotNull$141$38310c1fbeb590885a869c34445dd6a41dd30585e52dc29e64f3656596404d15$0
+androidx.fragment.app.FragmentManager$$InternalSyntheticThrowCCEIfNotNull$141$38310c1fbeb590885a869c34445dd6a41dd30585e52dc29e64f3656596404d15$1
+androidx.fragment.app.FragmentManager$$InternalSyntheticThrowCCEIfNotNull$149$5def81799f4e480971deb6f4ba60ac23ab69c377367e533c13f7a78b8b9d120b$0
+androidx.fragment.app.FragmentManager$$InternalSyntheticThrowCCEIfNotNull$151$e26a5b4c69c0ad38fc44d5abfd094c9cffa7ad59bbfcc0d97c4455fa673e6d94$0
 androidx.fragment.app.FragmentManager$$InternalSyntheticThrowCCEIfNotNull$27$d1c12ac45bb62655b3985ec7111e412585f4af278c7e219126a3d81805c17ad1$0
 androidx.fragment.app.FragmentManager$1$$InternalSyntheticThrowCCEIfNotNull$37$65ba6792d6f66d4ba163358632520bf65f1f8ffc0030703c83f5db859d189807$0
 androidx.fragment.app.FragmentManager$10:
@@ -37898,7 +38243,7 @@ androidx.lifecycle.ProcessLifecycleOwner:
     public static void dispatchPauseIfNeeded$lifecycle_process_release()
     public final void dispatchStopIfNeeded$lifecycle_process_release()
 androidx.lifecycle.ReportFragment$ActivityInitializationListener
-androidx.lifecycle.ReportFragment$Companion$$InternalSyntheticThrowCCEIfNotNull$166$6606f6a9d6c00feabd13f693204c7c685bcfd577a1c056fdbb01af5d22a24ba7$0
+androidx.lifecycle.ReportFragment$Companion$$InternalSyntheticThrowCCEIfNotNull$164$6606f6a9d6c00feabd13f693204c7c685bcfd577a1c056fdbb01af5d22a24ba7$0
 androidx.lifecycle.ReportFragment$Companion:
     public static androidx.lifecycle.ReportFragment get()
 androidx.lifecycle.ReportFragment$LifecycleCallbacks$Companion:
@@ -37925,7 +38270,7 @@ androidx.lifecycle.ViewModel:
     public volatile boolean mCleared
     public abstract void clear()
     public static void closeWithRuntimeException(java.lang.Object)
-androidx.lifecycle.ViewModelProvider$$InternalSyntheticThrowCCEIfNotNull$140$d9ef27056c92cb35606c8162a27672e3c06bbd16f1ea6710f3881b0047422c20$0
+androidx.lifecycle.ViewModelProvider$$InternalSyntheticThrowCCEIfNotNull$139$d9ef27056c92cb35606c8162a27672e3c06bbd16f1ea6710f3881b0047422c20$0
 androidx.lifecycle.ViewModelProvider$AndroidViewModelFactory$Companion
 androidx.lifecycle.ViewModelProvider$AndroidViewModelFactory
 androidx.lifecycle.ViewModelProvider$Factory$-CC
@@ -39918,6 +40263,130 @@ androidx.window.reflection.ReflectionUtils:
     static void <clinit>()
     public static boolean checkIsPresent$window_release()
     public static boolean isPublic$window_release(java.lang.reflect.Method)
+com.baseflow.geolocator.GeolocatorLocationService$LocalBinder:
+    public final synthetic com.baseflow.geolocator.GeolocatorLocationService this$0
+    public static com.baseflow.geolocator.GeolocatorLocationService getLocationService()
+com.baseflow.geolocator.GeolocatorLocationService:
+    public final java.lang.String WAKELOCK_TAG
+    public final java.lang.String WIFILOCK_TAG
+    public static boolean canStopLocationService()
+    public static void changeNotificationOptions()
+    public static void enableBackgroundMode()
+    public static void flutterEngineConnected()
+    public static void flutterEngineDisconnected()
+    public static int getWifiLockType()
+    public static void setActivity()
+    public static void setGeolocationManager()
+    public static void startLocationService()
+    public final void stopLocationService()
+com.baseflow.geolocator.GeolocatorPlugin:
+    public static void bindForegroundService()
+    public static void deregisterListeners()
+    public static void dispose()
+    public static void initialize()
+    public static void registerListeners()
+    public static void unbindForegroundService()
+com.baseflow.geolocator.LocationServiceHandlerImpl:
+    public final void disposeListeners()
+    public static void setContext()
+    public final void startListening()
+    public final void stopListening()
+com.baseflow.geolocator.MethodCallHandlerImpl$$InternalSyntheticLambda$2$67caf9360defffe8fecb31303728427c4787b3f6d1bc560b55de0dbfb4222eb4$0
+com.baseflow.geolocator.MethodCallHandlerImpl$$InternalSyntheticLambda$2$9f58e7b53f53d8152697328baa4143ec7fff9331caa20a9c65f8af7f351c5e01$0:
+    public final void onResult(int)
+com.baseflow.geolocator.MethodCallHandlerImpl:
+    public static void getLocationAccuracy()
+    public static synthetic void lambda$onGetCurrentPosition$5()
+    public static synthetic void lambda$onGetCurrentPosition$6()
+    public static void onCancelGetCurrentPosition()
+    public static void onCheckPermission()
+    public static void onGetCurrentPosition()
+    public static void onGetLastKnownPosition()
+    public static void onIsLocationServiceEnabled()
+    public static void onRequestPermission()
+    public final void setActivity()
+    public static void startListening()
+    public final void stopListening()
+com.baseflow.geolocator.StreamHandlerImpl:
+    public final void setActivity(io.flutter.embedding.android.FlutterActivity)
+    public static void setForegroundLocationService()
+    public final void startListening()
+com.baseflow.geolocator.errors.ErrorCodes$EnumUnboxingLocalUtility:
+    public static final enum int permissionRequestInProgress
+    static void <clinit>()
+    public static int _valueOf(java.lang.String)
+    public static int[] _values()
+    public static synthetic java.lang.String name(int)
+    public static synthetic java.lang.String stringValueOf(int)
+    public static synthetic int valueOf(java.lang.String)
+com.baseflow.geolocator.errors.ErrorCodes
+com.baseflow.geolocator.location.AndroidIconResource:
+    public static java.lang.String getDefType()
+    public static java.lang.String getName()
+com.baseflow.geolocator.location.BackgroundNotification:
+    public final java.lang.String channelId
+    public final java.lang.Integer notificationId
+    public static android.app.Notification build()
+    public static android.app.PendingIntent buildBringToFrontIntent()
+    public final int getDrawableId(java.lang.String,java.lang.String)
+    public static void updateChannel()
+    public static void updateOptions()
+com.baseflow.geolocator.location.FlutterLocationServiceListener:
+    public final void onLocationServiceError()
+    public final void onLocationServiceResult(boolean)
+com.baseflow.geolocator.location.ForegroundNotificationOptions:
+    public static java.lang.Integer getColor()
+    public static java.lang.String getNotificationChannelName()
+    public static com.baseflow.geolocator.location.AndroidIconResource getNotificationIcon()
+    public static java.lang.String getNotificationText()
+    public static java.lang.String getNotificationTitle()
+    public static boolean isEnableWakeLock()
+    public static boolean isEnableWifiLock()
+    public static boolean isSetOngoing()
+com.baseflow.geolocator.location.FusedLocationClient$2
+com.baseflow.geolocator.location.FusedLocationClient:
+    public final synthetic boolean checkLocationService()
+    public final synchronized int generateActivityRequestCode()
+    public static synthetic void lambda$startPositionUpdates$2()
+    public static void lambda$startPositionUpdates$3()
+    public static int toPriority(int)
+com.baseflow.geolocator.location.GeolocationManager:
+    static void <clinit>()
+    public static void getLastKnownPosition()
+    public static boolean isGooglePlayServicesAvailable()
+    public static void isLocationServiceEnabled()
+    public final void startPositionUpdates(com.baseflow.geolocator.location.LocationClient,io.flutter.embedding.android.FlutterActivity,com.baseflow.geolocator.location.PositionChangedCallback,com.baseflow.geolocator.errors.ErrorCallback)
+    public final void stopPositionUpdates(com.baseflow.geolocator.location.LocationClient)
+com.baseflow.geolocator.location.LocationAccuracy$EnumUnboxingLocalUtility
+com.baseflow.geolocator.location.LocationAccuracy
+com.baseflow.geolocator.location.LocationAccuracyManager:
+    static void <clinit>()
+    public static int getLocationAccuracy()
+com.baseflow.geolocator.location.LocationAccuracyStatus$EnumUnboxingLocalUtility
+com.baseflow.geolocator.location.LocationAccuracyStatus
+com.baseflow.geolocator.location.LocationClient:
+    public abstract boolean checkLocationService()
+com.baseflow.geolocator.location.LocationManagerClient$1
+com.baseflow.geolocator.location.LocationManagerClient:
+    public final synthetic boolean checkLocationService()
+com.baseflow.geolocator.location.LocationOptions:
+    public static int getAccuracy()
+    public static long getDistanceFilter()
+    public static long getTimeInterval()
+    public static boolean isUseMSLAltitude()
+com.baseflow.geolocator.location.LocationServiceListener
+com.baseflow.geolocator.location.NmeaClient:
+    public static synthetic void lambda$new$0()
+com.baseflow.geolocator.location.ServiceStatus$EnumUnboxingLocalUtility
+com.baseflow.geolocator.location.ServiceStatus
+com.baseflow.geolocator.permission.LocationPermission$EnumUnboxingLocalUtility
+com.baseflow.geolocator.permission.LocationPermission
+com.baseflow.geolocator.permission.PermissionManager:
+    static void <clinit>()
+    public static boolean hasBackgroundAccess()
+    public static int indexOf(java.lang.Object[],java.lang.String)
+com.baseflow.geolocator.permission.PermissionResultCallback
+com.baseflow.geolocator.utils.Utils
 com.getkeepsafe.relinker.ApkLibraryInstaller:
     public static long copy()
     public static void installLibrary()
@@ -40923,6 +41392,7 @@ com.google.android.gms.common.api.Api:
     public static com.google.android.gms.common.api.Api$AbstractClientBuilder zaa()
     public static com.google.android.gms.common.api.Api$AnyClientKey zab()
     public static java.lang.String zad()
+com.google.android.gms.common.api.CommonStatusCodes
 com.google.android.gms.common.api.GoogleApi$$InternalSyntheticThrowCCEIfNotNull$25$daa842e2bcf2f19cc0f90a7d36350410075fb86372360aff956ed17b5fc08fc9$0
 com.google.android.gms.common.api.GoogleApi$$InternalSyntheticThrowCCEIfNotNull$25$daa842e2bcf2f19cc0f90a7d36350410075fb86372360aff956ed17b5fc08fc9$1
 com.google.android.gms.common.api.GoogleApi$$InternalSyntheticThrowCCEIfNotNull$25$daa842e2bcf2f19cc0f90a7d36350410075fb86372360aff956ed17b5fc08fc9$2
@@ -40935,6 +41405,7 @@ com.google.android.gms.common.api.GoogleApiClient:
     public abstract com.google.android.gms.common.api.internal.BaseImplementation$ApiMethodImpl enqueue()
     public abstract com.google.android.gms.common.api.internal.BaseImplementation$ApiMethodImpl execute()
     public static java.util.Set getAllClients()
+    public abstract com.google.android.gms.common.api.Api$Client getClient()
     public abstract android.os.Looper getLooper()
     public abstract boolean maybeSignIn()
     public static void maybeSignOut()
@@ -40946,6 +41417,9 @@ com.google.android.gms.common.api.PendingResult:
     public abstract void setResultCallback(com.google.android.gms.common.api.ResultCallback)
 com.google.android.gms.common.api.PendingResults
 com.google.android.gms.common.api.Releasable
+com.google.android.gms.common.api.ResolvableApiException:
+    public static void startResolutionForResult()
+com.google.android.gms.common.api.Response
 com.google.android.gms.common.api.ResultCallback:
     public abstract void onResult()
 com.google.android.gms.common.api.ResultCallbacks
@@ -40962,6 +41436,7 @@ com.google.android.gms.common.api.Status:
     public static int getStatusCode()
     public static java.lang.String getStatusMessage()
     public final boolean hasResolution()
+    public static void startResolutionForResult()
     public final java.lang.String zza()
 com.google.android.gms.common.api.internal.ApiExceptionMapper:
     public final java.lang.Exception getException()
@@ -40974,17 +41449,15 @@ com.google.android.gms.common.api.internal.BaseImplementation$ApiMethodImpl:
     public final void setFailedResult(android.os.RemoteException)
 com.google.android.gms.common.api.internal.BasePendingResult$$InternalSyntheticThrowCCEIfNotNull$15$d6e95ce02a8ab098a72062a138860f2fc5f26d6d813ee075219476ebde631aaa$0
 com.google.android.gms.common.api.internal.BasePendingResult$$InternalSyntheticThrowCCEIfNotNull$17$fd95eb7636615a65dc0966a3488c05f711a49fb56db868cb91f2b6d8f2d2468e$0
-com.google.android.gms.common.api.internal.GoogleApiManager$$InternalSyntheticThrowCCEIfNotNull$185$176a2ecec2e201424803a5fc985d9d742a2e18976d4340f9044d3126d8ef36fa$0
+com.google.android.gms.common.api.internal.GoogleApiManager$$InternalSyntheticThrowCCEIfNotNull$183$176a2ecec2e201424803a5fc985d9d742a2e18976d4340f9044d3126d8ef36fa$0
 com.google.android.gms.common.api.internal.GoogleApiManager:
     public static void zaB()
     public final com.google.android.gms.common.internal.TelemetryLoggingClient zaH()
     public final void zaI()
-    public final void zaJ(com.google.android.gms.tasks.TaskCompletionSource,int,com.google.android.gms.common.api.GoogleApi)
     public static int zaa()
     public static synthetic bridge com.google.android.gms.common.api.Status zaf()
     public final com.google.android.gms.common.api.internal.zabq zai(com.google.android.gms.common.api.internal.ApiKey)
     public static com.google.android.gms.tasks.Task zan()
-    public static com.google.android.gms.tasks.Task zao()
     public static com.google.android.gms.tasks.Task zap()
     public static synthetic bridge java.lang.Object zaq()
     public static void zau()
@@ -40997,30 +41470,32 @@ com.google.android.gms.common.api.internal.LifecycleActivity:
     public static androidx.fragment.app.FragmentActivity zzb()
     public static boolean zzc()
     public static boolean zzd()
-com.google.android.gms.common.api.internal.ListenerHolder$ListenerKey:
-    public final java.lang.Object zaa
-    public final java.lang.String zab
-    public final boolean equals(java.lang.Object)
-    public final int hashCode()
 com.google.android.gms.common.api.internal.ListenerHolder:
-    public final java.util.concurrent.Executor zaa
-    public volatile com.google.android.gms.common.api.internal.ListenerHolder$ListenerKey zac
-com.google.android.gms.common.api.internal.ListenerHolders
+    public static com.google.android.gms.common.api.internal.ListenerHolder$ListenerKey getListenerKey()
+    public static void zaa()
 com.google.android.gms.common.api.internal.NonGmsServiceBrokerClient:
     public abstract void zac()
 com.google.android.gms.common.api.internal.OptionalPendingResultImpl:
     public final void setResultCallback(com.google.android.gms.common.api.ResultCallback)
 com.google.android.gms.common.api.internal.RegisterListenerMethod:
+    public final com.google.android.gms.common.Feature[] zab
+    public final boolean zac
     public abstract void clearListener()
     public abstract com.google.android.gms.common.api.internal.ListenerHolder$ListenerKey getListenerKey()
     public abstract com.google.android.gms.common.Feature[] getRequiredFeatures()
-    public abstract void registerListener()
+    public abstract void registerListener(com.google.android.gms.common.api.Api$AnyClient,com.google.android.gms.tasks.TaskCompletionSource)
     public abstract int zaa()
     public abstract boolean zab()
+com.google.android.gms.common.api.internal.RegistrationMethods$Builder:
+    public com.google.android.gms.common.api.internal.zacj zac
+    public com.google.android.gms.common.Feature[] zae
+    public boolean zaf
+    public static com.google.android.gms.common.api.internal.RegistrationMethods$Builder register()
+    public static com.google.android.gms.common.api.internal.RegistrationMethods$Builder setMethodKey()
+    public static com.google.android.gms.common.api.internal.RegistrationMethods$Builder unregister()
+    public static com.google.android.gms.common.api.internal.RegistrationMethods$Builder withHolder()
 com.google.android.gms.common.api.internal.RegistrationMethods:
-    public final com.google.android.gms.common.api.internal.RegisterListenerMethod register
-    public final com.google.android.gms.common.api.internal.UnregisterListenerMethod zaa
-    public final java.lang.Runnable zab
+    public final com.google.android.gms.common.api.internal.zacj zab
 com.google.android.gms.common.api.internal.SignInConnectionListener
 com.google.android.gms.common.api.internal.StatusExceptionMapper:
     public abstract java.lang.Exception getException()
@@ -41060,11 +41535,9 @@ com.google.android.gms.common.api.internal.zaag
 com.google.android.gms.common.api.internal.zabp:
     public final void onSignOutComplete()
 com.google.android.gms.common.api.internal.zabq$$InternalSyntheticThrowCCEIfNotNull$35$6e59dd714f23b8788d809f7a1ddb855157feafdba66a5fd0e46484d88534a2db$0
-com.google.android.gms.common.api.internal.zabq$$InternalSyntheticThrowCCEIfNotNull$47$906131d2c123e80164b9ca67ef89941ca6a5db27f850a568d4ea107eea66b0a4$0
 com.google.android.gms.common.api.internal.zabq:
     public static boolean zaA()
     public static boolean zaB()
-    public final com.google.android.gms.common.Feature zaC(com.google.android.gms.common.Feature[])
     public final void zaK(com.google.android.gms.common.api.internal.zai)
     public final void zaL()
     public static int zab()
@@ -41094,7 +41567,12 @@ com.google.android.gms.common.api.internal.zabw
 com.google.android.gms.common.api.internal.zabx:
     public static void zaa()
     public final synchronized void zab()
-com.google.android.gms.common.api.internal.zaci
+com.google.android.gms.common.api.internal.zack:
+    public final void registerListener(com.google.android.gms.common.api.Api$AnyClient,com.google.android.gms.tasks.TaskCompletionSource)
+com.google.android.gms.common.api.internal.zacl:
+    public final void unregisterListener()
+com.google.android.gms.common.api.internal.zacm
+com.google.android.gms.common.api.internal.zacn
 com.google.android.gms.common.api.internal.zaco
 com.google.android.gms.common.api.internal.zacp
 com.google.android.gms.common.api.internal.zacs
@@ -41124,9 +41602,6 @@ com.google.android.gms.common.api.internal.zada:
 com.google.android.gms.common.api.internal.zadb:
     public final synthetic com.google.android.gms.common.api.internal.zadc zaa
 com.google.android.gms.common.api.internal.zadc
-com.google.android.gms.common.api.internal.zaf
-com.google.android.gms.common.api.internal.zah:
-    public final com.google.android.gms.common.api.internal.ListenerHolder$ListenerKey zab
 com.google.android.gms.common.api.internal.zal
 com.google.android.gms.common.api.internal.zam:
     public static int zaa()
@@ -41148,7 +41623,6 @@ com.google.android.gms.common.api.internal.zzc:
     public final void zzk()
     public final void zzl()
 com.google.android.gms.common.api.zaa
-com.google.android.gms.common.api.zad
 com.google.android.gms.common.api.zae
 com.google.android.gms.common.internal.AccountAccessor:
     public static com.google.android.gms.common.internal.IAccountAccessor asInterface(android.os.IBinder)
@@ -41209,6 +41683,8 @@ com.google.android.gms.common.internal.GmsLogger:
 com.google.android.gms.common.internal.IAccountAccessor$Stub
 com.google.android.gms.common.internal.IAccountAccessor:
     public abstract android.accounts.Account zzb()
+com.google.android.gms.common.internal.ICancelToken$Stub:
+    public static com.google.android.gms.common.internal.ICancelToken asInterface(android.os.IBinder)
 com.google.android.gms.common.internal.ICancelToken:
     public abstract void cancel()
 com.google.android.gms.common.internal.IGmsCallbacks
@@ -41241,12 +41717,13 @@ com.google.android.gms.common.internal.TelemetryLoggingOptions:
     public static android.os.Bundle zaa()
 com.google.android.gms.common.internal.safeparcel.SafeParcelReader:
     public static java.math.BigInteger createBigInteger(android.os.Parcel,int)
+    public static float[] createFloatArray(android.os.Parcel,int)
     public static android.os.Parcel createParcel(android.os.Parcel,int)
     public static java.lang.String[] createStringArray(android.os.Parcel,int)
     public static double readDouble(android.os.Parcel,int)
-    public static float readFloat(android.os.Parcel,int)
     public static short readShort(android.os.Parcel,int)
 com.google.android.gms.common.internal.safeparcel.SafeParcelWriter:
+    public static void writeFloatArray(android.os.Parcel,int,float[],boolean)
     public static void writeParcel(android.os.Parcel,int,android.os.Parcel,boolean)
     public static void writeStringArray(android.os.Parcel,int,java.lang.String[],boolean)
     public static void zzd(android.os.Parcel,android.os.Parcelable,int)
@@ -41330,6 +41807,8 @@ com.google.android.gms.common.internal.zzv:
     public static boolean zzc()
 com.google.android.gms.common.internal.zzw:
     public final android.accounts.Account zzb()
+com.google.android.gms.common.internal.zzx:
+    public final void cancel()
 com.google.android.gms.common.internal.zzz
 com.google.android.gms.common.logging.Logger:
     public final com.google.android.gms.common.internal.GmsLogger zzc
@@ -41400,13 +41879,10 @@ com.google.android.gms.common.util.Strings:
     public static boolean isEmptyOrWhitespace(java.lang.String)
 com.google.android.gms.common.util.WorkSourceUtil:
     public static final int zza
-    public static final java.lang.reflect.Method zzd
     public static final java.lang.reflect.Method zze
     public static final java.lang.reflect.Method zzf
     public static final java.lang.reflect.Method zzg
     public static final java.lang.reflect.Method zzh
-    public static final java.lang.reflect.Method zzi
-com.google.android.gms.common.util.concurrent.HandlerExecutor
 com.google.android.gms.common.util.concurrent.NumberedThreadFactory
 com.google.android.gms.common.util.zza
 com.google.android.gms.common.util.zzc
@@ -41757,6 +42233,9 @@ com.google.android.gms.internal.firebase-auth-api.zzml:
     static void <clinit>()
 com.google.android.gms.internal.firebase-auth-api.zzzi:
     static void <clinit>()
+com.google.android.gms.internal.location.zzdp$$InternalSyntheticThrowCCEIfNotNull$15$618e4e9e478dcfad8e3b887cc1bf342d641aca095eba42e83db48f50364600f2$0
+com.google.android.gms.internal.location.zzdw$$InternalSyntheticThrowCCEIfNotNull$15$6c86a1580750b77dd55fc55f7560a8348d6d5d132c28d8923bde9f3190f19423$0
+com.google.android.gms.internal.location.zzdx$$InternalSyntheticThrowCCEIfNotNull$15$7b7eda6b57824d2302bc20274d3f7a9896a7071299244f0580f07daf28a1a4b0$0
 com.google.android.gms.internal.measurement.zzai$$InternalSyntheticBackportWithForwarding$1$009b8ce687141a1c10f321f12d1c660b15d376f9140a86caa0758e4bd61aef13$0
 com.google.android.gms.internal.measurement.zzgv:
     static void <clinit>()
@@ -41770,6 +42249,127 @@ com.google.android.gms.internal.measurement.zzkf:
     static void <clinit>()
 com.google.android.gms.internal.measurement.zzmu:
     static void <clinit>()
+com.google.android.gms.location.ActivityRecognition:
+    public static final com.google.android.gms.internal.location.zzaf ActivityRecognitionApi
+com.google.android.gms.location.ActivityRecognitionApi
+com.google.android.gms.location.ActivityTransition:
+    public static int getActivityType()
+    public static int getTransitionType()
+com.google.android.gms.location.ActivityTransitionRequest:
+    public static com.google.android.gms.location.ActivityTransitionRequest zza()
+com.google.android.gms.location.CurrentLocationRequest$Builder
+com.google.android.gms.location.CurrentLocationRequest:
+    public final long getDurationMillis()
+    public final int getGranularity()
+    public final long getMaxUpdateAgeMillis()
+    public final int getPriority()
+    public final boolean zza()
+    public final int zzb()
+    public final android.os.WorkSource zzc()
+com.google.android.gms.location.DeviceOrientation:
+    public static float[] getAttitude()
+    public static float getConservativeHeadingErrorDegrees()
+    public static long getElapsedRealtimeNs()
+    public static float getHeadingDegrees()
+    public static float getHeadingErrorDegrees()
+    public final boolean hasConservativeHeadingErrorDegrees()
+    public final boolean zza()
+com.google.android.gms.location.DeviceOrientationListener:
+    public abstract void onDeviceOrientationChanged()
+com.google.android.gms.location.DeviceOrientationRequest$Builder
+com.google.android.gms.location.DeviceOrientationRequest:
+    public static long getSamplingPeriodMicros()
+com.google.android.gms.location.FusedLocationProviderApi
+com.google.android.gms.location.GeofenceStatusCodes:
+    public static int zza(int)
+com.google.android.gms.location.GeofencingApi
+com.google.android.gms.location.GeofencingRequest$Builder
+com.google.android.gms.location.GeofencingRequest:
+    public static int getInitialTrigger()
+com.google.android.gms.location.LastLocationRequest$Builder
+com.google.android.gms.location.LastLocationRequest:
+    public final int getGranularity()
+    public final long getMaxUpdateAgeMillis()
+com.google.android.gms.location.LocationAvailability:
+    public static final com.google.android.gms.location.LocationAvailability zza
+    public static final com.google.android.gms.location.LocationAvailability zzb
+    public final boolean isLocationAvailable()
+com.google.android.gms.location.LocationListener:
+    public abstract void onLocationChanged()
+com.google.android.gms.location.LocationRequest$Builder:
+    public com.google.android.gms.internal.location.zze zzn
+    public final void setDurationMillis(long)
+    public final void setIntervalMillis(long)
+    public static com.google.android.gms.location.LocationRequest$Builder setMaxUpdateDelayMillis()
+    public static com.google.android.gms.location.LocationRequest$Builder setMaxUpdates()
+    public final void setMinUpdateDistanceMeters(float)
+    public final void setPriority(int)
+    public static com.google.android.gms.location.LocationRequest$Builder setWaitForAccurateLocation()
+    public final void zza(int)
+    public static com.google.android.gms.location.LocationRequest$Builder zzb()
+    public static com.google.android.gms.location.LocationRequest$Builder zzc()
+com.google.android.gms.location.LocationRequest:
+    public final long getDurationMillis()
+    public final int getGranularity()
+    public static long getIntervalMillis()
+    public final long getMaxUpdateAgeMillis()
+    public static long getMaxUpdateDelayMillis()
+    public static int getMaxUpdates()
+    public static float getMinUpdateDistanceMeters()
+    public static long getMinUpdateIntervalMillis()
+    public final int getPriority()
+    public final boolean isPassive()
+    public static boolean isWaitForAccurateLocation()
+    public static com.google.android.gms.location.LocationRequest setFastestInterval()
+    public static com.google.android.gms.location.LocationRequest setInterval()
+    public static com.google.android.gms.location.LocationRequest setPriority()
+    public static com.google.android.gms.location.LocationRequest setSmallestDisplacement()
+    public final int zza()
+    public final boolean zzb()
+    public final android.os.WorkSource zzc()
+    public static com.google.android.gms.internal.location.zze zzd()
+    public static java.lang.String zze(long)
+com.google.android.gms.location.LocationResult:
+    public final android.location.Location getLastLocation()
+    public static java.util.List getLocations()
+com.google.android.gms.location.LocationServices:
+    public static final com.google.android.gms.common.api.Api API
+    public static final com.google.android.gms.internal.location.zzbb FusedLocationApi
+    public static final com.google.android.gms.internal.location.zzcr GeofencingApi
+    public static final com.google.android.gms.internal.location.zzcz SettingsApi
+com.google.android.gms.location.LocationSettingsRequest$Builder
+com.google.android.gms.location.LocationSettingsResponse:
+    public static com.google.android.gms.location.LocationSettingsStates getLocationSettingsStates()
+    public static com.google.android.gms.common.api.Result getResult()
+com.google.android.gms.location.LocationSettingsResult:
+    public static com.google.android.gms.location.LocationSettingsStates getLocationSettingsStates()
+com.google.android.gms.location.LocationSettingsStates:
+    public static boolean isBlePresent()
+    public static boolean isBleUsable()
+    public static boolean isGpsPresent()
+    public static boolean isGpsUsable()
+    public static boolean isNetworkLocationPresent()
+    public static boolean isNetworkLocationUsable()
+com.google.android.gms.location.SettingsApi
+com.google.android.gms.location.SettingsClient
+com.google.android.gms.location.SleepSegmentRequest:
+    public static int getRequestedDataType()
+com.google.android.gms.location.zza
+com.google.android.gms.location.zzac
+com.google.android.gms.location.zzak:
+    public static final synthetic int zza
+    public static final java.lang.StringBuilder zzd
+com.google.android.gms.location.zzar
+com.google.android.gms.location.zzb:
+    public static com.google.android.gms.location.zzb zza()
+com.google.android.gms.location.zzo:
+    public static final com.google.android.gms.common.Feature zza
+    public static final com.google.android.gms.common.Feature zzc
+    public static final com.google.android.gms.common.Feature zzd
+    public static final com.google.android.gms.common.Feature zzi
+    public static final com.google.android.gms.common.Feature zzk
+    public static final com.google.android.gms.common.Feature zzl
+    public static final com.google.android.gms.common.Feature zzo
 com.google.android.gms.measurement.AppMeasurementReceiver:
     public final void doStartService()
 com.google.android.gms.measurement.api.AppMeasurementSdk:
@@ -43650,6 +44250,7 @@ com.google.firebase.firestore.Query:
     public static com.google.android.gms.tasks.Task lambda$get$0()
     public static synthetic com.google.firebase.firestore.QuerySnapshot lambda$get$1()
     public static com.google.firebase.firestore.Query orderBy()
+    public static com.google.firebase.firestore.core.Filter parseCompositeFilter()
     public static com.google.firebase.firestore.core.FieldFilter parseFieldFilter()
     public final varargs com.google.firebase.firestore.Query startAfter(java.lang.Object[])
     public final varargs com.google.firebase.firestore.Query startAt(java.lang.Object[])
@@ -43699,10 +44300,9 @@ com.google.firebase.firestore.TransactionOptions:
     static void <clinit>()
     public static int getMaxAttempts()
 com.google.firebase.firestore.UserDataReader:
-    public final com.google.firestore.v1.Value convertAndParseFieldData(java.lang.Object,com.google.firebase.firestore.core.UserData$ParseContext)
     public static com.google.firestore.v1.Value parseList()
     public static com.google.firestore.v1.Value parseMap()
-    public static com.google.firestore.v1.Value parseQueryValue()
+    public final com.google.firestore.v1.Value parseQueryValue(java.lang.Number)
     public static com.google.firestore.v1.Value parseScalarValue()
     public static void parseSentinelFieldValue()
     public static com.google.firebase.firestore.core.UserData$ParsedUpdateData parseUpdateData()
@@ -44448,7 +45048,6 @@ com.google.firebase.firestore.local.SQLiteRemoteDocumentCache:
 com.google.firebase.firestore.local.SQLiteSchema$$InternalSyntheticLambda$4$04bc48b44feda25366e57c3fbe7dd0ef730444e7f704e12c96dd11f163247a96$2
 com.google.firebase.firestore.local.SQLiteSchema$$InternalSyntheticLambda$4$04bc48b44feda25366e57c3fbe7dd0ef730444e7f704e12c96dd11f163247a96$3
 com.google.firebase.firestore.local.SQLiteSchema$$InternalSyntheticLambda$4$5bc1da1c59a6222f29cbb62e141d5a060772ad5b3a662cbc1e47cc900e6b1c86$0
-com.google.firebase.firestore.local.SQLiteSchema$$InternalSyntheticLambda$4$9ae9c0e7697e7cd728b84dbdc04cd90025ff6d2b759e317de74477a83722c6e8$0
 com.google.firebase.firestore.local.SQLiteSchema$$InternalSyntheticLambda$4$aa76aec8a0b415ee0815cce6edc1d84a04a630857bc6ee7349da439b27307590$0
 com.google.firebase.firestore.local.SQLiteSchema$$InternalSyntheticLambda$4$aa76aec8a0b415ee0815cce6edc1d84a04a630857bc6ee7349da439b27307590$1
 com.google.firebase.firestore.local.SQLiteSchema$$InternalSyntheticLambda$5$1efd7258fc863bbb7bd70b130bdf0d20f5c5c96f5f8e10cfa479674fc6cf02fe$0
@@ -44485,7 +45084,7 @@ com.google.firebase.firestore.local.SQLiteSchema:
     public static synthetic void lambda$createV8CollectionParentsIndex$9()
     public static void lambda$dropLastLimboFreeSnapshotVersion$6()
     public static void lambda$removeAcknowledgedMutations$1()
-    public static synthetic void lambda$removeAcknowledgedMutations$2()
+    public static void lambda$removeAcknowledgedMutations$2()
     public static void lambda$rewriteCanonicalIds$13()
     public static void removeAcknowledgedMutations()
     public static void removeMutationBatch()
@@ -46228,11 +46827,11 @@ com.google.protobuf.ExtensionRegistryLite:
     public final void findLiteExtensionByNumber(com.google.protobuf.AbstractMessageLite,int)
 com.google.protobuf.ExtensionSchema
 com.google.protobuf.ExtensionSchemaLite$$InternalSyntheticThrowCCEIfNotNull$106$0f31768e4e7816e1d605251b2c63991b9232158b6461572c951ee52e5c464765$0
-com.google.protobuf.ExtensionSchemaLite$$InternalSyntheticThrowCCEIfNotNull$109$daef2c004da14cb264a2cda2de6a3e57552f565f6397543150e3f135f0f26de5$0
+com.google.protobuf.ExtensionSchemaLite$$InternalSyntheticThrowCCEIfNotNull$106$daef2c004da14cb264a2cda2de6a3e57552f565f6397543150e3f135f0f26de5$0
+com.google.protobuf.ExtensionSchemaLite$$InternalSyntheticThrowCCEIfNotNull$116$3a506db24b6f5ba6dd149580f38dba7c65ab66954f2cbbeedab5dd39a49adc41$0
 com.google.protobuf.ExtensionSchemaLite$$InternalSyntheticThrowCCEIfNotNull$15$3095e8df64e341c1a5cc760828921030e08c2956bdbcf2b507300f7ddbaf197b$0
 com.google.protobuf.ExtensionSchemaLite$$InternalSyntheticThrowCCEIfNotNull$15$935bdbddb4cacb4a488f25822dfeac2426751576425477a3e169439a6d6434e8$0
 com.google.protobuf.ExtensionSchemaLite$$InternalSyntheticThrowCCEIfNotNull$76$e6b2703e58e2b2a1e689e0b5a1ecc075473f0f9cc0f649d5fa81595ba09ec23b$0
-com.google.protobuf.ExtensionSchemaLite$$InternalSyntheticThrowCCEIfNotNull$97$3a506db24b6f5ba6dd149580f38dba7c65ab66954f2cbbeedab5dd39a49adc41$0
 com.google.protobuf.ExtensionSchemaLite$1
 com.google.protobuf.ExtensionSchemaLite:
     public static int extensionNumber()
@@ -46250,16 +46849,16 @@ com.google.protobuf.ExtensionSchemas:
     public static com.google.protobuf.ExtensionSchemaLite lite()
 com.google.protobuf.FieldInfo
 com.google.protobuf.FieldSet$$InternalSyntheticThrowCCEIfNotNull$23$36f3a043ba4fb90729466f3da3376333a55e1a6c701456a0fef983ed2d966735$0
-com.google.protobuf.FieldSet$$InternalSyntheticThrowCCEIfNotNull$43$331a637db17d00f48a75a8cb142b1802e878b058795cdbd04d8013bfcd2cb363$0
 com.google.protobuf.FieldSet$$InternalSyntheticThrowCCEIfNotNull$72$81d092ce97c67b43a7bc7825f9823f954ad19e41de71eb8fa7d7ca3d2c84468a$0
-com.google.protobuf.FieldSet$$InternalSyntheticThrowCCEIfNotNull$76$7a5901354aa165c95acd523a9d8383880d1eda518ac3899d0b84a02d424fbed1$0
-com.google.protobuf.FieldSet$$InternalSyntheticThrowCCEIfNotNull$76$7a5901354aa165c95acd523a9d8383880d1eda518ac3899d0b84a02d424fbed1$1
-com.google.protobuf.FieldSet$$InternalSyntheticThrowCCEIfNotNull$76$c1b64d47b9144f586067e5aa85039486c99f751f89e374029c53f3fdaa38e39e$0
-com.google.protobuf.FieldSet$$InternalSyntheticThrowCCEIfNotNull$76$c1b64d47b9144f586067e5aa85039486c99f751f89e374029c53f3fdaa38e39e$1
-com.google.protobuf.FieldSet$$InternalSyntheticThrowCCEIfNotNull$76$c1b64d47b9144f586067e5aa85039486c99f751f89e374029c53f3fdaa38e39e$2
-com.google.protobuf.FieldSet$$InternalSyntheticThrowCCEIfNotNull$76$c1b64d47b9144f586067e5aa85039486c99f751f89e374029c53f3fdaa38e39e$3
+com.google.protobuf.FieldSet$$InternalSyntheticThrowCCEIfNotNull$74$7a5901354aa165c95acd523a9d8383880d1eda518ac3899d0b84a02d424fbed1$0
+com.google.protobuf.FieldSet$$InternalSyntheticThrowCCEIfNotNull$74$7a5901354aa165c95acd523a9d8383880d1eda518ac3899d0b84a02d424fbed1$1
+com.google.protobuf.FieldSet$$InternalSyntheticThrowCCEIfNotNull$74$c1b64d47b9144f586067e5aa85039486c99f751f89e374029c53f3fdaa38e39e$0
+com.google.protobuf.FieldSet$$InternalSyntheticThrowCCEIfNotNull$74$c1b64d47b9144f586067e5aa85039486c99f751f89e374029c53f3fdaa38e39e$1
+com.google.protobuf.FieldSet$$InternalSyntheticThrowCCEIfNotNull$74$c1b64d47b9144f586067e5aa85039486c99f751f89e374029c53f3fdaa38e39e$2
+com.google.protobuf.FieldSet$$InternalSyntheticThrowCCEIfNotNull$74$c1b64d47b9144f586067e5aa85039486c99f751f89e374029c53f3fdaa38e39e$3
 com.google.protobuf.FieldSet$$InternalSyntheticThrowCCEIfNotNull$76$fd260b37eea61a3415d5eea20561c231c0433af7240084beb12b08d6352e810f$0
 com.google.protobuf.FieldSet$$InternalSyntheticThrowCCEIfNotNull$76$fd260b37eea61a3415d5eea20561c231c0433af7240084beb12b08d6352e810f$1
+com.google.protobuf.FieldSet$$InternalSyntheticThrowCCEIfNotNull$87$331a637db17d00f48a75a8cb142b1802e878b058795cdbd04d8013bfcd2cb363$0
 com.google.protobuf.FieldSet$$InternalSyntheticThrowCCEIfNotNull$89$e62403618d487d449423f23648240dba5f167c65526ea13630a7b67592679a88$0
 com.google.protobuf.FieldSet$$InternalSyntheticThrowCCEIfNotNull$89$e62403618d487d449423f23648240dba5f167c65526ea13630a7b67592679a88$1
 com.google.protobuf.FieldSet$1
@@ -46416,7 +47015,7 @@ com.google.protobuf.GeneratedMessageLite:
     public abstract int getMemoizedHashCode()
     public final int getMemoizedSerializedSize()
     public abstract com.google.protobuf.Parser getParserForType()
-    public final int getSerializedSize()
+    public abstract int getSerializedSize()
     public abstract boolean hashCodeIsNotMemoized()
     public final boolean isInitialized()
     public final void makeImmutable()
@@ -46530,7 +47129,6 @@ com.google.protobuf.MapEntryLite$Metadata:
 com.google.protobuf.MapEntryLite:
     public final java.lang.String key
     public static int computeMessageSize()
-    public static int computeSerializedSize(com.google.protobuf.MapEntryLite$Metadata,java.lang.Object,java.lang.Object)
     public static com.google.protobuf.MapEntryLite$Metadata getMetadata()
 com.google.protobuf.MapFieldLite:
     public static boolean isMutable()
@@ -46924,10 +47522,10 @@ io.flutter.embedding.android.FlutterTextureView:
     public static void init$2()
     public final boolean isSurfaceAvailableForRendering()
     public static boolean shouldNotify$1()
-io.flutter.embedding.android.FlutterView$$InternalSyntheticThrowCCEIfNotNull$171$e04935db1ff5c0e7a3d8489ce500d467ba0d3281024134339184676ebf57bf53$0
-io.flutter.embedding.android.FlutterView$$InternalSyntheticThrowCCEIfNotNull$171$e04935db1ff5c0e7a3d8489ce500d467ba0d3281024134339184676ebf57bf53$1
-io.flutter.embedding.android.FlutterView$$InternalSyntheticThrowCCEIfNotNull$175$400feb66af64a15cb11f4a7c370ef58a2a287c5fb75c40111d7f7b800fe9d206$0
-io.flutter.embedding.android.FlutterView$$InternalSyntheticThrowCCEIfNotNull$175$400feb66af64a15cb11f4a7c370ef58a2a287c5fb75c40111d7f7b800fe9d206$1
+io.flutter.embedding.android.FlutterView$$InternalSyntheticThrowCCEIfNotNull$169$e04935db1ff5c0e7a3d8489ce500d467ba0d3281024134339184676ebf57bf53$0
+io.flutter.embedding.android.FlutterView$$InternalSyntheticThrowCCEIfNotNull$169$e04935db1ff5c0e7a3d8489ce500d467ba0d3281024134339184676ebf57bf53$1
+io.flutter.embedding.android.FlutterView$$InternalSyntheticThrowCCEIfNotNull$173$400feb66af64a15cb11f4a7c370ef58a2a287c5fb75c40111d7f7b800fe9d206$0
+io.flutter.embedding.android.FlutterView$$InternalSyntheticThrowCCEIfNotNull$173$400feb66af64a15cb11f4a7c370ef58a2a287c5fb75c40111d7f7b800fe9d206$1
 io.flutter.embedding.android.FlutterView$1:
     public final void onAccessibilityChanged(boolean,boolean)
 io.flutter.embedding.android.FlutterView$FlutterEngineAttachmentListener
@@ -46951,8 +47549,8 @@ io.flutter.embedding.android.FlutterView:
     public static void removeOnFirstFrameRenderedListener()
     public final void resetWillNotDraw(boolean,boolean)
     public static void revertImageView()
-io.flutter.embedding.android.FlutterViewDelegate$$InternalSyntheticApiModelOutline$2$8346074b0a88beb5784ae1a841daa5ebc57b34351d488c05b47daa69cda9202b$0
 io.flutter.embedding.android.FlutterViewDelegate:
+    public static java.util.List getCaptionBarInsets()
     public static android.view.WindowInsets getWindowInsets()
     public static void growViewportMetricsToCaptionBar()
 io.flutter.embedding.android.KeyChannelResponder$$InternalSyntheticLambda$1$d0032f3ebccdc9087bb1a9c5eb1036799fb34b3cab3c4114a14fa232bf29461e$0:
@@ -47050,12 +47648,12 @@ io.flutter.embedding.engine.FlutterEngineCache:
     public static io.flutter.embedding.engine.FlutterEngineCache getInstance()
     public static void put()
     public static void remove()
-io.flutter.embedding.engine.FlutterEngineConnectionRegistry$$InternalSyntheticThrowCCEIfNotNull$138$13d5af93c8d5a800c3d35f07ece199b696571ea5dd88060839a44fbc432f3571$0
-io.flutter.embedding.engine.FlutterEngineConnectionRegistry$$InternalSyntheticThrowCCEIfNotNull$138$13d5af93c8d5a800c3d35f07ece199b696571ea5dd88060839a44fbc432f3571$1
-io.flutter.embedding.engine.FlutterEngineConnectionRegistry$$InternalSyntheticThrowCCEIfNotNull$138$13d5af93c8d5a800c3d35f07ece199b696571ea5dd88060839a44fbc432f3571$2
-io.flutter.embedding.engine.FlutterEngineConnectionRegistry$$InternalSyntheticThrowCCEIfNotNull$199$04ddd1794ca0cf602ff4f66f4b587984f2832854b1b68b68b1a244e95464d53b$0
-io.flutter.embedding.engine.FlutterEngineConnectionRegistry$$InternalSyntheticThrowCCEIfNotNull$199$04ddd1794ca0cf602ff4f66f4b587984f2832854b1b68b68b1a244e95464d53b$1
-io.flutter.embedding.engine.FlutterEngineConnectionRegistry$$InternalSyntheticThrowCCEIfNotNull$199$04ddd1794ca0cf602ff4f66f4b587984f2832854b1b68b68b1a244e95464d53b$2
+io.flutter.embedding.engine.FlutterEngineConnectionRegistry$$InternalSyntheticThrowCCEIfNotNull$201$04ddd1794ca0cf602ff4f66f4b587984f2832854b1b68b68b1a244e95464d53b$0
+io.flutter.embedding.engine.FlutterEngineConnectionRegistry$$InternalSyntheticThrowCCEIfNotNull$201$04ddd1794ca0cf602ff4f66f4b587984f2832854b1b68b68b1a244e95464d53b$1
+io.flutter.embedding.engine.FlutterEngineConnectionRegistry$$InternalSyntheticThrowCCEIfNotNull$201$04ddd1794ca0cf602ff4f66f4b587984f2832854b1b68b68b1a244e95464d53b$2
+io.flutter.embedding.engine.FlutterEngineConnectionRegistry$$InternalSyntheticThrowCCEIfNotNull$201$13d5af93c8d5a800c3d35f07ece199b696571ea5dd88060839a44fbc432f3571$0
+io.flutter.embedding.engine.FlutterEngineConnectionRegistry$$InternalSyntheticThrowCCEIfNotNull$201$13d5af93c8d5a800c3d35f07ece199b696571ea5dd88060839a44fbc432f3571$1
+io.flutter.embedding.engine.FlutterEngineConnectionRegistry$$InternalSyntheticThrowCCEIfNotNull$201$13d5af93c8d5a800c3d35f07ece199b696571ea5dd88060839a44fbc432f3571$2
 io.flutter.embedding.engine.FlutterEngineConnectionRegistry$$InternalSyntheticThrowCCEIfNotNull$25$07b19f6fc8cd4db189ad1f513d16943349736ff495bb07e8a64b19d1e6eecc3a$0
 io.flutter.embedding.engine.FlutterEngineConnectionRegistry$$InternalSyntheticThrowCCEIfNotNull$25$8e827abb9dd8641b61a2efd4944d1a1e404e3f5a2a7c3194f200e2f74400817d$0
 io.flutter.embedding.engine.FlutterEngineConnectionRegistry$$InternalSyntheticThrowCCEIfNotNull$25$f6c65d4b7673e575c4830ac4919ecb690589e15a856fe430a8b029de2204b106$0
@@ -47069,14 +47667,16 @@ io.flutter.embedding.engine.FlutterEngineConnectionRegistry$FlutterEngineActivit
     public final java.util.Set onWindowFocusChangedListeners
     public final void addActivityResultListener(io.flutter.plugin.common.PluginRegistry$ActivityResultListener)
     public final void addOnNewIntentListener(io.flutter.plugins.firebase.messaging.FlutterFirebaseMessagingPlugin)
-    public static void addRequestPermissionsResultListener()
+    public final void addRequestPermissionsResultListener(io.flutter.plugin.common.PluginRegistry$RequestPermissionsResultListener)
     public static android.app.Activity getActivity()
     public static boolean onActivityResult()
     public static void onNewIntent()
+    public static boolean onRequestPermissionsResult()
     public static void onRestoreInstanceState()
     public static void onSaveInstanceState()
     public static void onUserLeaveHint()
     public final void removeActivityResultListener(io.flutter.plugin.common.PluginRegistry$ActivityResultListener)
+    public static void removeRequestPermissionsResultListener()
 io.flutter.embedding.engine.FlutterEngineConnectionRegistry$FlutterEngineBroadcastReceiverPluginBinding
 io.flutter.embedding.engine.FlutterEngineConnectionRegistry$FlutterEngineContentProviderPluginBinding
 io.flutter.embedding.engine.FlutterEngineConnectionRegistry$FlutterEngineServicePluginBinding
@@ -47137,8 +47737,6 @@ io.flutter.embedding.engine.FlutterJNI$Factory:
     public static io.flutter.embedding.engine.FlutterJNI provideFlutterJNI()
 io.flutter.embedding.engine.FlutterJNI:
     static void <clinit>()
-io.flutter.embedding.engine.FlutterShellArgs:
-    public final java.lang.String[] toArray()
 io.flutter.embedding.engine.dart.DartExecutor$DartCallback:
     public final android.content.res.AssetManager androidAssetManager
 io.flutter.embedding.engine.dart.DartExecutor$IsolateServiceIdListener
@@ -47422,7 +48020,7 @@ io.flutter.embedding.engine.systemchannels.PlatformViewsChannel$1$$InternalSynth
 io.flutter.embedding.engine.systemchannels.PlatformViewsChannel$1:
     public static void clearFocus()
     public static void create()
-    public static void dispose()
+    public static void dispose$1()
     public static void offset()
     public static void resize()
     public static void setDirection()
@@ -47546,12 +48144,12 @@ io.flutter.plugin.common.EventChannel:
 io.flutter.plugin.common.JSONMethodCodec:
     public static java.lang.Object unwrapNull(java.lang.Object)
 io.flutter.plugin.common.MethodCall:
+    public static java.lang.Object argument()
     public static java.lang.Object arguments()
 io.flutter.plugin.common.MethodChannel:
     public final io.flutter.embedding.engine.dart.DartMessenger$TaskQueueToken taskQueue
     public static void invokeMethod()
 io.flutter.plugin.common.PluginRegistry$NewIntentListener
-io.flutter.plugin.common.PluginRegistry$RequestPermissionsResultListener
 io.flutter.plugin.common.PluginRegistry$UserLeaveHintListener
 io.flutter.plugin.common.StandardMessageCodec:
     public static final byte[] readBytes(java.nio.ByteBuffer)
@@ -47740,16 +48338,16 @@ io.flutter.plugin.platform.PlatformViewsAccessibilityDelegate:
 io.flutter.plugin.platform.PlatformViewsController$$InternalSyntheticLambda$1$bd13dd01db3ab57d509e52c8417ef5d5b2ef31857d942ff07b62757b1bf44647$0
 io.flutter.plugin.platform.PlatformViewsController$$InternalSyntheticLambda$2$bf6af4ca52fa8c446be94a1997bfa8579abd0b9431cf9d2b8aecf023d6f2a47f$0
 io.flutter.plugin.platform.PlatformViewsController$$InternalSyntheticLambda$2$d79502f410c00abb38e025081332f954bbb55d382dacf49ebd0e255cbac4549b$0
-io.flutter.plugin.platform.PlatformViewsController$$InternalSyntheticThrowCCEIfNotNull$178$cd1c63df7f2cb43b5dd96088f289d945d08ab1259ef761f89a1976f7042cf6b6$0
-io.flutter.plugin.platform.PlatformViewsController$$InternalSyntheticThrowCCEIfNotNull$178$cd1c63df7f2cb43b5dd96088f289d945d08ab1259ef761f89a1976f7042cf6b6$1
+io.flutter.plugin.platform.PlatformViewsController$$InternalSyntheticThrowCCEIfNotNull$176$cd1c63df7f2cb43b5dd96088f289d945d08ab1259ef761f89a1976f7042cf6b6$0
+io.flutter.plugin.platform.PlatformViewsController$$InternalSyntheticThrowCCEIfNotNull$176$cd1c63df7f2cb43b5dd96088f289d945d08ab1259ef761f89a1976f7042cf6b6$1
 io.flutter.plugin.platform.PlatformViewsController$$InternalSyntheticThrowCCEIfNotNull$21$5be31d781dee93e2af96fbce28648868c8b087acd6ed04dc4bbdc95e978aeef6$0
 io.flutter.plugin.platform.PlatformViewsController$$InternalSyntheticThrowCCEIfNotNull$23$64c4ddeda3a36196491f67bbdb9c732450d697f2a6a5ad0e82b0f6b78b1790d9$0
 io.flutter.plugin.platform.PlatformViewsController$$InternalSyntheticThrowCCEIfNotNull$23$83edd46f2ac1fb07c5a83445e0f0973c10ce1a477baf35aff2b6710d3f70a8a0$0
 io.flutter.plugin.platform.PlatformViewsController$$InternalSyntheticThrowCCEIfNotNull$23$bd13dd01db3ab57d509e52c8417ef5d5b2ef31857d942ff07b62757b1bf44647$0
 io.flutter.plugin.platform.PlatformViewsController$1$$InternalSyntheticLambda$3$f7edeccdd5221afc6923361855bcdfbf522d70a580c078de9b2c6217f39ef2cd$0
-io.flutter.plugin.platform.PlatformViewsController$1$$InternalSyntheticThrowCCEIfNotNull$175$29b7272c508bc127e7e97e729a31661d1cde222dd950db799cf2c4cd46b9c655$0
-io.flutter.plugin.platform.PlatformViewsController$1$$InternalSyntheticThrowCCEIfNotNull$175$29b7272c508bc127e7e97e729a31661d1cde222dd950db799cf2c4cd46b9c655$1
-io.flutter.plugin.platform.PlatformViewsController$1$$InternalSyntheticThrowCCEIfNotNull$194$2c079d00ce5126776fe1355136a6954acdc6876e2b3c39390573ebb3c0aa4ac4$0
+io.flutter.plugin.platform.PlatformViewsController$1$$InternalSyntheticThrowCCEIfNotNull$173$29b7272c508bc127e7e97e729a31661d1cde222dd950db799cf2c4cd46b9c655$0
+io.flutter.plugin.platform.PlatformViewsController$1$$InternalSyntheticThrowCCEIfNotNull$173$29b7272c508bc127e7e97e729a31661d1cde222dd950db799cf2c4cd46b9c655$1
+io.flutter.plugin.platform.PlatformViewsController$1$$InternalSyntheticThrowCCEIfNotNull$192$2c079d00ce5126776fe1355136a6954acdc6876e2b3c39390573ebb3c0aa4ac4$0
 io.flutter.plugin.platform.PlatformViewsController$1$$InternalSyntheticThrowCCEIfNotNull$23$0b6394ed82158aa285102a3cffa791370fabbac2fdf27c02817da32186094b1a$0
 io.flutter.plugin.platform.PlatformViewsController$1$$InternalSyntheticThrowCCEIfNotNull$23$89b16aafe5de4beccb9e73bdf55c844ef7fed26d6f3de55282c1ab94c82c16f5$0
 io.flutter.plugin.platform.PlatformViewsController$1$$InternalSyntheticThrowCCEIfNotNull$23$b7402152dbac454f789d6284ac4c13a4d99f1794a8bc8c1a826abf95f847eb7b$0
@@ -48581,7 +49179,6 @@ io.flutter.plugins.firebase.messaging.FlutterFirebaseMessagingStore:
 io.flutter.plugins.firebase.messaging.FlutterFirebasePermissionManager$RequestPermissionsSuccessCallback
 io.flutter.plugins.firebase.messaging.FlutterFirebasePermissionManager:
     public final int permissionCode
-    public static boolean onRequestPermissionsResult()
     public final void requestPermissions(io.flutter.embedding.android.FlutterActivity,io.flutter.plugins.firebase.messaging.FlutterFirebaseMessagingPlugin$$InternalSyntheticLambda$4$eb549ec24b47473e2d204780649df53bebe410085e658dd52d16a44ff63e73df$0,io.flutter.plugins.firebase.messaging.FlutterFirebaseMessagingPlugin$$InternalSyntheticLambda$4$eb549ec24b47473e2d204780649df53bebe410085e658dd52d16a44ff63e73df$1)
 io.flutter.plugins.firebase.messaging.FlutterFirebaseRemoteMessageLiveData:
     public static io.flutter.plugins.firebase.messaging.FlutterFirebaseRemoteMessageLiveData getInstance()
@@ -48627,13 +49224,13 @@ io.flutter.plugins.googlesignin.GoogleSignInPlugin$Delegate:
     public static void lambda$getAccessToken$2()
     public static synthetic void lambda$signOut$0()
     public static void requestScopes()
-    public static void setActivity()
+    public final void setActivity()
     public static void signIn()
     public static void signInSilently()
     public static void signOut$1()
 io.flutter.plugins.googlesignin.GoogleSignInPlugin:
     public final void attachToActivity$1(io.flutter.embedding.engine.FlutterEngineConnectionRegistry$FlutterEngineActivityPluginBinding)
-    public static void dispose$1()
+    public static void dispose$1$1()
     public final void disposeActivity()
     public static void initInstance$3()
 io.flutter.plugins.googlesignin.GoogleSignInWrapper:
@@ -49343,7 +49940,7 @@ io.grpc.internal.BackoffPolicyRetryScheduler:
     public final io.grpc.internal.ExponentialBackoffPolicy$Provider policyProvider
     public static synthetic void lambda$reset$0()
     public final void reset()
-io.grpc.internal.CallCredentialsApplyingTransportFactory$CallCredentialsApplyingTransport$$InternalSyntheticThrowCCEIfNotNull$145$3b94e317e9a5a68545b187187cfa5f67c05f2ba0f3d668c43948c23e255db2a8$0
+io.grpc.internal.CallCredentialsApplyingTransportFactory$CallCredentialsApplyingTransport$$InternalSyntheticThrowCCEIfNotNull$141$3b94e317e9a5a68545b187187cfa5f67c05f2ba0f3d668c43948c23e255db2a8$0
 io.grpc.internal.CallCredentialsApplyingTransportFactory$CallCredentialsApplyingTransport$1:
     public final void onComplete()
 io.grpc.internal.CallCredentialsApplyingTransportFactory$CallCredentialsApplyingTransport$2
@@ -50574,7 +51171,6 @@ kotlin.collections.ArrayDeque:
     public static void copyElements()
     public final int decremented(int)
     public static java.lang.Object removeFirstOrNull()
-    public static java.lang.Object removeLast()
     public static void removeRangeShiftPreceding()
     public static void removeRangeShiftSucceeding()
 kotlin.collections.ArraysKt:
@@ -50592,7 +51188,6 @@ kotlin.collections.CollectionsKt:
     public static java.lang.Object last(java.util.ArrayList)
 kotlin.collections.CollectionsKt__CollectionsKt:
     public static java.util.List emptyList()
-    public static int getLastIndex(java.util.List)
     public static final java.util.List optimizeReadOnlyList(java.util.List)
     public static void throwIndexOverflow()
 kotlin.collections.CollectionsKt___CollectionsKt
@@ -50974,7 +51569,7 @@ kotlinx.coroutines.CoroutineExceptionHandler:
 kotlinx.coroutines.CoroutineExceptionHandlerKt:
     public static final java.lang.Throwable handlerException(java.lang.Throwable,java.lang.Throwable)
 kotlinx.coroutines.CoroutineId$$InternalSyntheticBackport$1$2b7cb1301806cb43cf4d42689484004904fc70136481df3bae2bf06fdcc87183$0
-kotlinx.coroutines.CoroutineId$$InternalSyntheticThrowCCEIfNotNull$236$a7d8b984f14ef6811fc36f0d030a1c8a7f27075d192601697212118d266ca07a$0
+kotlinx.coroutines.CoroutineId$$InternalSyntheticThrowCCEIfNotNull$234$a7d8b984f14ef6811fc36f0d030a1c8a7f27075d192601697212118d266ca07a$0
 kotlinx.coroutines.CoroutineId$$InternalSyntheticThrowCCEIfNotNull$37$db4fcf294f73e0414b61d779f72a560fad56831e560e6b71def36fecaf64a8d1$0
 kotlinx.coroutines.CoroutineId$Key
 kotlinx.coroutines.CoroutineId
@@ -51217,9 +51812,9 @@ kotlinx.coroutines.channels.BufferedChannel$$InternalSyntheticBackportWithForwar
 kotlinx.coroutines.channels.BufferedChannel$$InternalSyntheticBackportWithForwarding$3$2105e1ea3ef3bda839c305fd265ab88fb1603d88dab3dd2e5ef2e0e166592324$0
 kotlinx.coroutines.channels.BufferedChannel$$InternalSyntheticBackportWithForwarding$3$2105e1ea3ef3bda839c305fd265ab88fb1603d88dab3dd2e5ef2e0e166592324$1
 kotlinx.coroutines.channels.BufferedChannel$$InternalSyntheticBackportWithForwarding$3$41641a56641855d807a333abf897296fa2531140a0b21ecf112eca7ca5040b4f$0
-kotlinx.coroutines.channels.BufferedChannel$$InternalSyntheticThrowCCEIfNotNull$112$477558f47305b46a97e98327e82dc157ded03b2c689ba9650782ad95656735aa$0
-kotlinx.coroutines.channels.BufferedChannel$$InternalSyntheticThrowCCEIfNotNull$112$477558f47305b46a97e98327e82dc157ded03b2c689ba9650782ad95656735aa$1
-kotlinx.coroutines.channels.BufferedChannel$$InternalSyntheticThrowCCEIfNotNull$112$477558f47305b46a97e98327e82dc157ded03b2c689ba9650782ad95656735aa$2
+kotlinx.coroutines.channels.BufferedChannel$$InternalSyntheticThrowCCEIfNotNull$111$477558f47305b46a97e98327e82dc157ded03b2c689ba9650782ad95656735aa$0
+kotlinx.coroutines.channels.BufferedChannel$$InternalSyntheticThrowCCEIfNotNull$111$477558f47305b46a97e98327e82dc157ded03b2c689ba9650782ad95656735aa$1
+kotlinx.coroutines.channels.BufferedChannel$$InternalSyntheticThrowCCEIfNotNull$111$477558f47305b46a97e98327e82dc157ded03b2c689ba9650782ad95656735aa$2
 kotlinx.coroutines.channels.BufferedChannel$$InternalSyntheticThrowCCEIfNotNull$66$ede10579b622c50962ff73dd2f82c141abf9f8a33531ab07fe72fe1a6b92cb41$0
 kotlinx.coroutines.channels.BufferedChannel$$InternalSyntheticThrowCCEIfNotNull$66$ede10579b622c50962ff73dd2f82c141abf9f8a33531ab07fe72fe1a6b92cb41$1
 kotlinx.coroutines.channels.BufferedChannel$$InternalSyntheticThrowCCEIfNotNull$66$ede10579b622c50962ff73dd2f82c141abf9f8a33531ab07fe72fe1a6b92cb41$2
@@ -51379,7 +51974,7 @@ kotlinx.coroutines.flow.ReadonlySharedFlow:
     public final kotlinx.coroutines.Job job
 kotlinx.coroutines.flow.SafeFlow:
     public static java.lang.Object collectSafely()
-kotlinx.coroutines.flow.SharedFlowImpl$$InternalSyntheticThrowCCEIfNotNull$206$8a81ae7abf994ef8d5da0c3a1e1fcc00bff1251b789a1cb954e12c66d854807b$0
+kotlinx.coroutines.flow.SharedFlowImpl$$InternalSyntheticThrowCCEIfNotNull$204$8a81ae7abf994ef8d5da0c3a1e1fcc00bff1251b789a1cb954e12c66d854807b$0
 kotlinx.coroutines.flow.SharedFlowImpl$WhenMappings
 kotlinx.coroutines.flow.SharedFlowImpl:
     public static void cancelEmitter()
@@ -51421,7 +52016,7 @@ kotlinx.coroutines.flow.StartedWhileSubscribed$command$2:
     public final java.lang.Object invoke$18()
 kotlinx.coroutines.flow.StartedWhileSubscribed:
     public final kotlinx.coroutines.flow.Flow command(kotlinx.coroutines.flow.internal.SubscriptionCountStateFlow)
-kotlinx.coroutines.flow.StateFlowImpl$$InternalSyntheticThrowCCEIfNotNull$206$f1d1f40a1c8fc04c0a8d71575b6c25dc238f9224ed939db2b509a92e2c81cbda$0
+kotlinx.coroutines.flow.StateFlowImpl$$InternalSyntheticThrowCCEIfNotNull$204$f1d1f40a1c8fc04c0a8d71575b6c25dc238f9224ed939db2b509a92e2c81cbda$0
 kotlinx.coroutines.flow.StateFlowImpl:
     public final boolean compareAndSet()
     public static kotlinx.coroutines.flow.StateFlowSlot createSlot()
@@ -51603,7 +52198,7 @@ kotlinx.coroutines.internal.ThreadContextKt$countAll$1:
     public static java.lang.Object invoke$20()
 kotlinx.coroutines.internal.ThreadContextKt$findOne$1:
     public static void invoke$8()
-kotlinx.coroutines.internal.ThreadContextKt$updateState$1$$InternalSyntheticThrowCCEIfNotNull$236$3ff7ef4e574584d34e294bf8ac548819e9de353a79a9bbbdd8ea1b7dd939fd97$0
+kotlinx.coroutines.internal.ThreadContextKt$updateState$1$$InternalSyntheticThrowCCEIfNotNull$234$3ff7ef4e574584d34e294bf8ac548819e9de353a79a9bbbdd8ea1b7dd939fd97$0
 kotlinx.coroutines.internal.ThreadContextKt$updateState$1:
     public static kotlinx.coroutines.internal.ThreadState invoke()
 kotlinx.coroutines.internal.ThreadContextKt:
@@ -51744,7 +52339,7 @@ kotlinx.coroutines.sync.SemaphoreImpl$$InternalSyntheticBackportWithForwarding$1
 kotlinx.coroutines.sync.SemaphoreImpl$$InternalSyntheticBackportWithForwarding$1$52312df87efbfafaa95c65d52ac4de5105bf7140041f2fd453795807adeeeff9$2
 kotlinx.coroutines.sync.SemaphoreImpl$$InternalSyntheticBackportWithForwarding$1$a555d7479488bd56b39c138c2bf88cf9681203470abc8bf5b0f0fe3053e2273b$0
 kotlinx.coroutines.sync.SemaphoreImpl$$InternalSyntheticBackportWithForwarding$1$a555d7479488bd56b39c138c2bf88cf9681203470abc8bf5b0f0fe3053e2273b$1
-kotlinx.coroutines.sync.SemaphoreImpl$$InternalSyntheticThrowCCEIfNotNull$112$52312df87efbfafaa95c65d52ac4de5105bf7140041f2fd453795807adeeeff9$0
+kotlinx.coroutines.sync.SemaphoreImpl$$InternalSyntheticThrowCCEIfNotNull$111$52312df87efbfafaa95c65d52ac4de5105bf7140041f2fd453795807adeeeff9$0
 kotlinx.coroutines.sync.SemaphoreImpl$$InternalSyntheticThrowCCEIfNotNull$62$05872729c719b1dc8c6d1b9868544037b96ccbc3e5ea488fe77d51a2ef86e386$0
 kotlinx.coroutines.sync.SemaphoreImpl$addAcquireToQueue$createNewSegment$1:
     public final kotlinx.coroutines.sync.SemaphoreSegment invoke()

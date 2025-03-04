@@ -11,18 +11,27 @@ buildscript {
 }
 
 allprojects {
-  repositories {
-    google()
-    mavenCentral()
-  }
-
-  tasks.withType(JavaCompile).configureEach {
-    javaCompiler = javaToolchains.compilerFor {
-      languageVersion = JavaLanguageVersion.of(8)
+    repositories {
+        google()
+        mavenCentral()
     }
-  }
+
+    tasks.withType<JavaCompile>().configureEach {
+        sourceCompatibility = JavaVersion.VERSION_11.toString()
+        targetCompatibility = JavaVersion.VERSION_11.toString()
+    }
 }
 
-tasks.register<Delete>("clean") {
+tasks.register("clean", Delete::class) {
+    delete(rootProject.buildDir)
+}
+
+rootProject.layout.buildDirectory.set(file("../build/android"))
+subprojects {
+    project.layout.buildDirectory.set(file("${rootProject.layout.buildDirectory.asFile.get()}/${project.name}"))
+    project.evaluationDependsOn(":app")
+}
+
+tasks.named("clean", Delete::class) {
     delete(rootProject.layout.buildDirectory)
 }

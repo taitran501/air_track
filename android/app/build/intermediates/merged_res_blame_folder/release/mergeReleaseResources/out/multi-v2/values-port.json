@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.air_track.app-mergeReleaseResources-55:/values-port/values-port.xml",
+            "outputFile": "com.example.air_track.app-mergeReleaseResources-56:/values-port/values-port.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\trant\\.gradle\\caches\\8.9\\transforms\\31b0d1d628682997e03c9a48797454a7\\transformed\\appcompat-1.1.0\\res\\values-port\\values-port.xml",
+                    "source": "C:\\Users\\trant\\.gradle\\caches\\8.10\\transforms\\435e1fe3b272792e6b971babc0911ea5\\transformed\\appcompat-1.1.0\\res\\values-port\\values-port.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

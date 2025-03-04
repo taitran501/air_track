@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.air_track.app-mergeReleaseResources-55:/values-night-v8/values-night-v8.xml",
+            "outputFile": "com.example.air_track.app-mergeReleaseResources-56:/values-night-v8/values-night-v8.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\trant\\.gradle\\caches\\8.9\\transforms\\31b0d1d628682997e03c9a48797454a7\\transformed\\appcompat-1.1.0\\res\\values-night-v8\\values-night-v8.xml",
+                    "source": "C:\\Users\\trant\\.gradle\\caches\\8.10\\transforms\\435e1fe3b272792e6b971babc0911ea5\\transformed\\appcompat-1.1.0\\res\\values-night-v8\\values-night-v8.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9",
                         "startColumns": "4,4,4,4,4,4,4,4",

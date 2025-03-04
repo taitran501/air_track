@@ -1,4 +1,3 @@
-// App-level build.gradle.kts
 plugins {
     id("com.android.application")
     id("kotlin-android")
@@ -9,13 +8,14 @@ plugins {
 android {
     namespace = "com.example.air_track"
     compileSdk = 34
+    ndkVersion = "27.2.12479018" // Sửa cú pháp đúng
 
     defaultConfig {
         applicationId = "com.example.air_track"
-        minSdk = 23
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        minSdk = 23 // Sửa cú pháp đúng
+        targetSdk = flutter.targetSdkVersion
+        versionCode = flutter.versionCode
+        versionName = flutter.versionName
     }
 
     compileOptions {
@@ -24,7 +24,7 @@ android {
     }
 
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = JavaVersion.VERSION_11.toString()
     }
 
     buildTypes {
@@ -32,6 +32,23 @@ android {
             signingConfig = signingConfigs.getByName("debug")
         }
     }
+
+    applicationVariants.all {
+        val variant = this
+        variant.outputs.all {
+            variant.assembleProvider.get().doLast {
+                copy {
+                    from("${project.layout.buildDirectory.get()}/outputs/apk/${variant.name}/app-${variant.name}.apk")
+                    into("${rootProject.projectDir}/../build/app/outputs/flutter-apk")
+                    rename { "app-${variant.name}.apk" }
+                }
+            }
+        }
+    }
+}
+
+flutter {
+    source = "../.."
 }
 
 dependencies {
