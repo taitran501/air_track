@@ -6,12 +6,14 @@ class AirQualityInitial extends AirQualityState {}
 
 class AirQualityLoading extends AirQualityState {}
 
-class AirQualityLoaded extends AirQualityState { // Trạng thái khi dữ liệu đã được load
+class AirQualityLoaded extends AirQualityState {
   final AirQuality airQuality;
-  AirQualityLoaded(this.airQuality);
+  final Position position;
+
+  AirQualityLoaded(this.airQuality, this.position);
 }
 
-class AirQualityError extends AirQualityState { // Trạng thái khi xảy ra lỗi
+class AirQualityError extends AirQualityState {
   final String message;
   AirQualityError(this.message);
 }

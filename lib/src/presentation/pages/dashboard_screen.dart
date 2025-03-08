@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fl_chart/fl_chart.dart';
-import '../../domain/usecases/get_air_quality.dart';
-import '../../data/repositories/air_quality_repository_impl.dart';
+// import '../../domain/usecases/get_air_quality.dart';
+// import '../../data/repositories/air_quality_repository_impl.dart';
 import '../blocs/air_quality_bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -48,8 +48,11 @@ class DashboardScreen extends StatelessWidget {
     );
   }
 
+// build UI khi dữ liệu đã được load
   Widget _buildDashboardUI(AirQualityLoaded state) {
-    return Padding(
+  // Add position print statement here
+  print("Vị trí hiện tại: lat: ${state.position.latitude}, lon: ${state.position.longitude}");
+    return Padding( 
       padding: const EdgeInsets.all(16.0),
       child: Column(
         children: [

@@ -4,7 +4,7 @@ class LocationService {
   static Future<Position> getCurrentLocation() async {
     bool serviceEnabled;
     LocationPermission permission;
-
+    final position = await LocationService.getCurrentLocation();
     // Kiểm tra xem dịch vụ vị trí có được bật không
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
