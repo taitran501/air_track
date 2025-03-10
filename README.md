@@ -1,7 +1,9 @@
 # AirTrack - Air Quality Monitoring Application 🌍
 
 ## 1. Introduction
-AirTrack is a Flutter-based application that enables users to monitor real-time **PM2.5, CO2, temperature, and humidity** data from IoT sensors.
+AirTrack is a Flutter-based application that allows users to monitor real-time **PM2.5, CO, NO₂, O₃, SO₂, and other air quality indices** by fetching data from the **OpenWeather API**. 
+
+The app also provides historical data visualization and customizable alert thresholds for air quality monitoring. It supports user authentication via **Google Sign-In** and **Guest Mode**, with data caching for offline access.
 
 ## 2. Architecture
 The application follows the **Clean Architecture + Bloc Pattern**.
@@ -21,7 +23,12 @@ graph TD;
         Auth["Firebase Authentication"]
     end
 
+    subgraph External API
+        OpenWeather["OpenWeather API"]
+    end
+
     Dashboard -->|Fetches data| Firestore
+    Dashboard -->|Fetches data| OpenWeather
     Chart -->|Fetches historical data| Firestore
     Settings -->|Updates threshold| Firestore
     Firestore -->|Triggers notifications| CloudFunctions
@@ -32,11 +39,13 @@ graph TD;
 ### Bloc Flow
 ```mermaid
 stateDiagram-v2
-    [*] --> DashboardBloc : Initialize
-    DashboardBloc --> GetAirQualityEvent : User Requests Data
-    GetAirQualityEvent --> Firestore : Fetch Data Realtime
-    Firestore --> DashboardBloc : Stream Data
-    DashboardBloc --> DashboardScreen : Update UI
+    [*] --> AirQualityBloc : Initialize
+    AirQualityBloc --> FetchAirQuality : User Requests Data
+    FetchAirQuality --> OpenWeather : Fetch Data from API
+    FetchAirQuality --> Firestore : Fetch Cached Data
+    OpenWeather --> AirQualityBloc : Return Live Data
+    Firestore --> AirQualityBloc : Return Cached Data (if available)
+    AirQualityBloc --> DashboardScreen : Update UI
 
     SettingsBloc --> SetAlertThresholdEvent : User Updates Threshold
     SetAlertThresholdEvent --> Firestore : Store new settings
@@ -51,11 +60,18 @@ stateDiagram-v2
 ## 3. Technologies Used
 - **Flutter** (UI)
 - **Bloc Pattern** (State Management)
-- **Firebase/MQTT/PostgreSQL** (Backend)
-- **Dio** (API Requests)
+- **Firebase** (Backend)
+- **http** (API Requests)
 
 ## 4. Installation & Running the Application
 ```sh
+# Clone repository
+git clone https://github.com/taitran501/air_track.git
+cd AirTrack
+
+# Load environment variables
+cp .env.example .env
+
 # Install dependencies
 flutter pub get
 
