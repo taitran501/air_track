@@ -19,8 +19,8 @@ class DashboardScreen extends StatelessWidget {
       create: (context) {
         final firestore = FirebaseFirestore.instance;
         return AirQualityBloc(firestore: firestore)..add(FetchAirQuality());
-      },      
-        child: Scaffold(
+      },
+      child: Scaffold(
         appBar: AppBar(
           title: const Text('AirTrack - Dashboard'),
           actions: [
@@ -42,17 +42,19 @@ class DashboardScreen extends StatelessWidget {
               return _buildErrorUI(context, state);
             }
             return const Center(child: Text("Không có dữ liệu"));
-        },
-      ),
+          },
+        ),
       ),
     );
   }
 
-// build UI khi dữ liệu đã được load
+  // build UI khi dữ liệu đã được load
   Widget _buildDashboardUI(AirQualityLoaded state) {
-  // Add position print statement here
-  print("Vị trí hiện tại: lat: ${state.position.latitude}, lon: ${state.position.longitude}");
-    return Padding( 
+    // Add position print statement here
+    print(
+      "Vị trí hiện tại: lat: ${state.position.latitude}, lon: ${state.position.longitude}",
+    );
+    return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Column(
         children: [
@@ -66,7 +68,7 @@ class DashboardScreen extends StatelessWidget {
     );
   }
 
-// widget hiển thị chỉ số AQI
+  // widget hiển thị chỉ số AQI
   Widget _buildAQICard(int aqi) {
     return Card(
       elevation: 6,
@@ -83,12 +85,20 @@ class DashboardScreen extends StatelessWidget {
             const SizedBox(height: 10),
             Text(
               "$aqi",
-              style: const TextStyle(fontSize: 36, fontWeight: FontWeight.bold, color: Colors.white),
+              style: const TextStyle(
+                fontSize: 36,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
             ),
             const SizedBox(height: 10),
             Text(
               _getAQILevel(aqi),
-              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500, color: Colors.white),
+              style: const TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w500,
+                color: Colors.white,
+              ),
             ),
           ],
         ),
@@ -96,17 +106,42 @@ class DashboardScreen extends StatelessWidget {
     );
   }
 
-// hiển thị thông số chi tiết
+  // hiển thị thông số chi tiết
   Widget _buildAirQualityGrid(AirQualityLoaded state) {
     final airQualityData = [
-      {"label": "CO", "value": state.airQuality.co, "unit": "µg/m³", "icon": Icons.cloud},
-      {"label": "NO₂", "value": state.airQuality.no2, "unit": "µg/m³", "icon": Icons.air},
-      {"label": "O₃", "value": state.airQuality.o3, "unit": "µg/m³", "icon": Icons.wb_sunny},
-      {"label": "PM2.5", "value": state.airQuality.pm25, "unit": "µg/m³", "icon": Icons.grain},
-      {"label": "PM10", "value": state.airQuality.pm10, "unit": "µg/m³", "icon": Icons.filter},
+      {
+        "label": "CO",
+        "value": state.airQuality.co,
+        "unit": "µg/m³",
+        "icon": Icons.cloud,
+      },
+      {
+        "label": "NO₂",
+        "value": state.airQuality.no2,
+        "unit": "µg/m³",
+        "icon": Icons.air,
+      },
+      {
+        "label": "O₃",
+        "value": state.airQuality.o3,
+        "unit": "µg/m³",
+        "icon": Icons.wb_sunny,
+      },
+      {
+        "label": "PM2.5",
+        "value": state.airQuality.pm25,
+        "unit": "µg/m³",
+        "icon": Icons.grain,
+      },
+      {
+        "label": "PM10",
+        "value": state.airQuality.pm10,
+        "unit": "µg/m³",
+        "icon": Icons.filter,
+      },
     ];
 
-// gridview để hiển thị thông số
+    // gridview để hiển thị thông số
     return GridView.builder(
       shrinkWrap: true,
       itemCount: airQualityData.length,
@@ -116,81 +151,127 @@ class DashboardScreen extends StatelessWidget {
         mainAxisSpacing: 10,
       ),
       itemBuilder: (context, index) {
-    final Map<String, dynamic> data = airQualityData[index]; // Ép kiểu về Map<String, dynamic>
+        final Map<String, dynamic> data =
+            airQualityData[index]; // Ép kiểu về Map<String, dynamic>
 
+        return Card(
+          elevation: 4,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(12),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  data["icon"] as IconData,
+                  size: 40,
+                  color: Colors.blue,
+                ), // Ép kiểu IconData
+                const SizedBox(height: 10),
+                Text(
+                  "${(data["value"] as double).toStringAsFixed(1)} ${(data["unit"] as String)}", // Ép kiểu double & String
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  data["label"] as String, // Ép kiểu String
+                  style: const TextStyle(fontSize: 16, color: Colors.grey),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  // build chart
+  Widget _buildAQIChart(AirQualityLoaded state) {
     return Card(
       elevation: 4,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: Padding(
-        padding: const EdgeInsets.all(12),
+        padding: const EdgeInsets.all(16),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(data["icon"] as IconData, size: 40, color: Colors.blue), // Ép kiểu IconData
-            const SizedBox(height: 10),
-            Text(
-              "${(data["value"] as double).toStringAsFixed(1)} ${(data["unit"] as String)}", // Ép kiểu double & String
-              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            const Text(
+              "Xu hướng AQI",
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
-            Text(
-              data["label"] as String, // Ép kiểu String
-              style: const TextStyle(fontSize: 16, color: Colors.grey),
+            const SizedBox(height: 10),
+            StreamBuilder(
+              stream:
+                  FirebaseFirestore.instance
+                      .collection("air_quality_data")
+                      .orderBy("timestamp", descending: true)
+                      .limit(7)
+                      .snapshots(),
+              builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(child: CircularProgressIndicator());
+                }
+                if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+                  return const Center(
+                    child: Text("Không có dữ liệu để hiển thị"),
+                  );
+                }
+
+                List<FlSpot> spots =
+                    snapshot.data!.docs.asMap().entries.map((entry) {
+                      int index = entry.key;
+                      var doc = entry.value;
+                      double aqi = (doc["aqi"] as num).toDouble();
+                      return FlSpot(index.toDouble(), aqi);
+                    }).toList();
+
+                return SizedBox(
+                  height: 150,
+                  child: LineChart(
+                    LineChartData(
+                      lineBarsData: [
+                        LineChartBarData(
+                          spots: spots,
+                          isCurved: true,
+                          dotData: FlDotData(show: false),
+                          belowBarData: BarAreaData(show: false),
+                        ),
+                      ],
+                      borderData: FlBorderData(show: true),
+                      titlesData: FlTitlesData(
+                        bottomTitles: AxisTitles(
+                          sideTitles: SideTitles(
+                            showTitles: true,
+                            getTitlesWidget: (value, meta) {
+                              return Text("H-${value.toInt()}");
+                            },
+                          ),
+                        ),
+                        leftTitles: AxisTitles(
+                          sideTitles: SideTitles(
+                            showTitles: true,
+                            reservedSize: 40,
+                            getTitlesWidget: (value, meta) {
+                              return Text(value.toInt().toString());
+                            },
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+              },
             ),
           ],
         ),
       ),
     );
-  },
-    );
   }
 
-// build chart
-  Widget _buildAQIChart(AirQualityLoaded state) {
-  // Here you would ideally have historical data
-  // For now, we can use the current AQI and add some variation to simulate history
-  final currentAqi = state.airQuality.aqi.toDouble();
-  
-  return Card(
-    elevation: 4,
-    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-    child: Padding(
-      padding: const EdgeInsets.all(16),
-      child: Column(
-        children: [
-          const Text("Xu hướng AQI", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-          const SizedBox(height: 10),
-          SizedBox(
-            height: 150,
-            child: LineChart(
-              LineChartData(
-                lineBarsData: [
-                  LineChartBarData(
-                    spots: List.generate(
-                      7,
-                      (index) => FlSpot(index.toDouble(), 
-                        // Create variation based on current AQI
-                        currentAqi * (0.8 + (index * 0.05))),
-                    ),
-                    isCurved: true,
-                    dotData: FlDotData(show: false),
-                    belowBarData: BarAreaData(show: false),
-                  ),
-                ],
-                borderData: FlBorderData(show: false),
-                titlesData: FlTitlesData(
-                  bottomTitles: AxisTitles(sideTitles: SideTitles(showTitles: true)),
-                  leftTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    ),
-  );
-}
-
-// build UI khi có lỗi
+  // build UI khi có lỗi
   Widget _buildErrorUI(BuildContext context, AirQualityError state) {
     return Center(
       child: Column(
@@ -211,10 +292,10 @@ class DashboardScreen extends StatelessWidget {
     );
   }
 
-// hàm trả về màu nền dựa vào chỉ số AQI
+  // hàm trả về màu nền dựa vào chỉ số AQI
   Color _getAQIColor(int aqi) {
     if (aqi <= 50) return Colors.green;
-    if (aqi <= 100) return Colors.yellow;
+    if (aqi <= 100) return Colors.amber;
     if (aqi <= 150) return Colors.orange;
     if (aqi <= 200) return Colors.red;
     return Colors.purple;

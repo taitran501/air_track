@@ -16,6 +16,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 // import 'src/core/utils/platform_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import 'src/data/sources/local/location_service.dart';
 void main() async { // async: hàm chạy bất đồng bộ
   WidgetsFlutterBinding.ensureInitialized(); // widgets flutter binding: khởi tạo môi trường chạy ứng dụng
   await dotenv.load();
@@ -23,6 +24,12 @@ void main() async { // async: hàm chạy bất đồng bộ
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  try {
+    final position = await LocationService.getCurrentLocation();
+    print("📍 Vị trí khi mở app: ${position.latitude}, ${position.longitude}");
+  } catch (e) {
+    print("❌ Không thể lấy vị trí khi mở app: $e");
+  }
   print("✅ Firebase initialized successfully");
   runApp(MyApp());
 }
