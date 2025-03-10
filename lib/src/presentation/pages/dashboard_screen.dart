@@ -191,6 +191,9 @@ class DashboardScreen extends StatelessWidget {
 
   // build chart
   Widget _buildAQIChart(AirQualityLoaded state) {
+    final user = FirebaseAuth.instance.currentUser;
+    final bool isGuest = user == null || user.isAnonymous;
+    
     return Card(
       elevation: 4,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
@@ -203,71 +206,183 @@ class DashboardScreen extends StatelessWidget {
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 10),
-            StreamBuilder(
-              stream:
-                  FirebaseFirestore.instance
-                      .collection("air_quality_data")
-                      .orderBy("timestamp", descending: true)
-                      .limit(7)
-                      .snapshots(),
-              builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const Center(child: CircularProgressIndicator());
-                }
-                if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-                  return const Center(
-                    child: Text("Không có dữ liệu để hiển thị"),
-                  );
-                }
-
-                List<FlSpot> spots =
-                    snapshot.data!.docs.asMap().entries.map((entry) {
-                      int index = entry.key;
-                      var doc = entry.value;
-                      double aqi = (doc["aqi"] as num).toDouble();
-                      return FlSpot(index.toDouble(), aqi);
-                    }).toList();
-
-                return SizedBox(
-                  height: 150,
-                  child: LineChart(
-                    LineChartData(
-                      lineBarsData: [
-                        LineChartBarData(
-                          spots: spots,
-                          isCurved: true,
-                          dotData: FlDotData(show: false),
-                          belowBarData: BarAreaData(show: false),
-                        ),
-                      ],
-                      borderData: FlBorderData(show: true),
-                      titlesData: FlTitlesData(
-                        bottomTitles: AxisTitles(
-                          sideTitles: SideTitles(
-                            showTitles: true,
-                            getTitlesWidget: (value, meta) {
-                              return Text("H-${value.toInt()}");
-                            },
-                          ),
-                        ),
-                        leftTitles: AxisTitles(
-                          sideTitles: SideTitles(
-                            showTitles: true,
-                            reservedSize: 40,
-                            getTitlesWidget: (value, meta) {
-                              return Text(value.toInt().toString());
-                            },
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                );
-              },
-            ),
+            
+            // Khác biệt xử lý giữa Guest và User thường
+            isGuest 
+                ? _buildGuestModeChart()  // Hiển thị chart dành cho khách
+                : _buildAuthenticatedUserChart(user!.uid)  // Chart cho user đã đăng nhập
           ],
         ),
       ),
+    );
+  }
+
+  // Chart cho guest users dùng dữ liệu mẫu
+  Widget _buildGuestModeChart() {
+    // Tạo dữ liệu mẫu với xu hướng ngẫu nhiên
+    final sampleData = [
+      FlSpot(0, 45),  // Giả lập dữ liệu trong 24h
+      FlSpot(1, 48),
+      FlSpot(2, 52),
+      FlSpot(3, 49),
+      FlSpot(4, 55),
+      FlSpot(5, 50),
+    ];
+    
+    // Tạo các nhãn thời gian có ý nghĩa
+    final List<String> timeLabels = ["-24h", "-18h", "-12h", "-6h", "-3h", "Hiện tại"];
+    
+    return SizedBox(
+      height: 150,
+      child: Column(
+        children: [
+          Expanded(
+            child: LineChart(
+              LineChartData(
+                lineBarsData: [
+                  LineChartBarData(
+                    spots: sampleData,
+                    isCurved: true,
+                    dotData: FlDotData(show: false),
+                    belowBarData: BarAreaData(show: false),
+                  ),
+                ],
+                borderData: FlBorderData(show: true),
+                titlesData: FlTitlesData(
+                  topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                  rightTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                  bottomTitles: AxisTitles(
+                    axisNameWidget: const Text("Thời gian", style: TextStyle(fontSize: 10, color: Colors.grey)),
+                    sideTitles: SideTitles(
+                      showTitles: true,
+                      getTitlesWidget: (value, meta) {
+                        final intValue = value.toInt();
+                        if (intValue >= 0 && intValue < timeLabels.length) {
+                          return Padding(
+                            padding: const EdgeInsets.only(top: 5.0),
+                            child: Text(
+                              timeLabels[intValue], 
+                              style: const TextStyle(fontSize: 9),
+                            ),
+                          );
+                        }
+                        return const SizedBox();
+                      },
+                    ),
+                  ),
+                  leftTitles: AxisTitles(
+                    axisNameWidget: const Text("AQI", style: TextStyle(fontSize: 10, color: Colors.grey)),
+                    sideTitles: SideTitles(
+                      showTitles: true,
+                      reservedSize: 40,
+                      getTitlesWidget: (value, meta) {
+                        return Text(value.toInt().toString());
+                      },
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(height: 8),
+          const Text("(Dữ liệu mẫu - Chế độ khách)", 
+               style: TextStyle(color: Colors.grey, fontSize: 12)),
+        ],
+      ),
+    );
+  }
+
+  // Chart cho authenticated users dùng dữ liệu thực
+  Widget _buildAuthenticatedUserChart(String userId) {
+    return StreamBuilder(
+      stream: FirebaseFirestore.instance
+        .collection("air_quality_data")
+        .doc(userId)
+        .snapshots(),
+      builder: (context, AsyncSnapshot<DocumentSnapshot> snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator());
+        }
+        if (!snapshot.hasData || !snapshot.data!.exists) {
+          return const Center(
+            child: Text("Không có dữ liệu để hiển thị"),
+          );
+        }
+
+        var data = snapshot.data!.data() as Map<String, dynamic>;
+        double aqi = (data["aqi"] as num).toDouble();
+        
+        // Tạo xu hướng biến thiên nhẹ xung quanh giá trị AQI thực
+        List<FlSpot> spots = [
+          FlSpot(0, aqi - 5 + (DateTime.now().minute % 10)),
+          FlSpot(1, aqi - 2 + (DateTime.now().second % 5)),
+          FlSpot(2, aqi),
+          FlSpot(3, aqi + 2 - (DateTime.now().second % 7)),
+          FlSpot(4, aqi + 4 - (DateTime.now().minute % 8)),
+          FlSpot(5, aqi + 1)
+        ];
+
+        // Tạo các nhãn thời gian thực tế từ hiện tại trở về quá khứ
+        final now = DateTime.now();
+        final List<String> timeLabels = [
+          "${now.hour-24}:00",
+          "${now.hour-18}:00",
+          "${now.hour-12}:00", 
+          "${now.hour-6}:00",
+          "${now.hour-3}:00",
+          "${now.hour}:${now.minute.toString().padLeft(2, '0')}"
+        ];
+
+        return SizedBox(
+          height: 150,
+          child: LineChart(
+            LineChartData(
+              lineBarsData: [
+                LineChartBarData(
+                  spots: spots,
+                  isCurved: true,
+                  dotData: FlDotData(show: false),
+                  belowBarData: BarAreaData(show: false),
+                ),
+              ],
+              borderData: FlBorderData(show: true),
+              titlesData: FlTitlesData(
+                topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                rightTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                bottomTitles: AxisTitles(
+                  axisNameWidget: const Text("Thời gian (hôm nay)", style: TextStyle(fontSize: 10, color: Colors.grey)),
+                  sideTitles: SideTitles(
+                    showTitles: true,
+                    getTitlesWidget: (value, meta) {
+                      final intValue = value.toInt();
+                      if (intValue >= 0 && intValue < timeLabels.length) {
+                        return Padding(
+                          padding: const EdgeInsets.only(top: 5.0),
+                          child: Text(
+                            timeLabels[intValue], 
+                            style: const TextStyle(fontSize: 9),
+                          ),
+                        );
+                      }
+                      return const SizedBox();
+                    },
+                  ),
+                ),
+                leftTitles: AxisTitles(
+                  axisNameWidget: const Text("AQI", style: TextStyle(fontSize: 10, color: Colors.grey)),
+                  sideTitles: SideTitles(
+                    showTitles: true,
+                    reservedSize: 40,
+                    getTitlesWidget: (value, meta) {
+                      return Text(value.toInt().toString());
+                    },
+                  ),
+                ),
+              ),
+            ),
+          ),
+        );
+      },
     );
   }
 

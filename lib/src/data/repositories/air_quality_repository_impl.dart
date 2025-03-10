@@ -5,6 +5,7 @@ import '../models/air_quality_model.dart';
 import '../../domain/repositories/air_quality_repository.dart';
 import '../../domain/entities/air_quality.dart';
 import '../sources/local/location_service.dart';
+import '../sources/local/sample_air_quality.dart'; // Add this import
 
 class AirQualityRepositoryImpl implements AirQualityRepository {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -19,11 +20,8 @@ class AirQualityRepositoryImpl implements AirQualityRepository {
     if (user == null || user.isAnonymous) {
       print("👤 Guest Mode: Sử dụng dữ liệu mẫu (không gọi API)");
       
-      // Return sample data immediately
-      return AirQualityModel(
-        aqi: 99, co: 0.3, no2: 10, o3: 15, so2: 5, pm25: 12, pm10: 20,
-        timestamp: DateTime.now(),
-      );
+      // Use centralized sample data
+      return SampleAirQuality.airQuality;
     }
 
     // User đã đăng nhập: Lấy dữ liệu từ API
